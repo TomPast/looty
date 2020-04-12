@@ -1,0 +1,100 @@
+ion-toolbar{
+  --background: #344955;
+  --color: white;
+}
+ion-content{
+  --background: #E1E2E1;
+}
+
+ion-title#pageName{
+  text-align: center;
+  font-weight: 500;
+}
+
+#logo{
+  width: 54px;
+  height: 40px;
+  filter: drop-shadow(0 0 0.75rem #000000);
+  margin-right: 15px;
+}
+
+#panel{
+  margin-top: 25px;
+  text-align: center;
+}
+
+ion-label{
+  --color: primary;
+}
+
+ion-input{
+
+  --color: #0B222C;
+}
+
+ion-button{
+  margin-top:60px;
+  width:167px;
+  height:45px;
+  --background:#F9AA33;
+  --color: black;
+  font-size:18px;
+  font-weight: 500;
+  margin-bottom:20px;
+}
+
+
+#right-col{
+  text-align: left !important;
+}
+
+#username{
+  text-align: left;
+  margin:0;
+}
+
+ion-row{
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+ion-avatar{
+  width: 96px;
+  height: 96px;
+  filter: drop-shadow(0 3px 0.5rem #acacac);
+}
+
+h1{
+  color:#344955;
+  font-size: 20px;
+  font-weight: 600 !important;
+  margin-left: -4px;
+}
+
+ion-text{
+  color: #7a7475;
+  font-size: 14px;
+}
+
+#stat{
+  //padding-top: 20px;
+  text-align: left;
+}
+
+ion-progress-bar{
+  width: 80%;
+  margin-top: 10px;
+  margin-right:auto;
+  margin-left:auto;
+  --buffer-background: rgba(255,220,101,0.68);
+  --progress-background:#F9AA33;
+}
+h2{
+  color:#344955;
+  font-size: 15px;
+  font-weight: 600 !important;
+  padding-top: 15px;
+}

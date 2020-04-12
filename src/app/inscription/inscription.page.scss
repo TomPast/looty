@@ -1,0 +1,68 @@
+ion-toolbar{
+  --background: #344955;
+  --color: white;
+}
+ion-content{
+  --background: #E1E2E1;
+}
+
+ion-title{
+  text-align: center;
+  font-weight: 500;
+}
+
+ion-card{
+  width:90%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
+}
+ion-card-content{
+  text-align: center;
+  padding-top: 25%;
+}
+
+#logo{
+  width: 136px;
+  height: 100px;
+  filter: drop-shadow(0 0 0.75rem #000000);
+  text-align: center;
+  position: absolute;
+  top:25px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index:50;
+
+}
+
+#connexion_panel{
+  margin-top: 75px;
+  text-align: center;
+}
+
+ion-label{
+  --color: primary;
+}
+
+ion-input{
+
+  --color: #0B222C;
+}
+
+ion-button{
+  margin-top:60px;
+  width:167px;
+  height:52px;
+  --background:#F9AA33;
+  --color: black;
+  font-size:20px;
+  font-weight: 500;
+  margin-bottom:20px;
+}
+
+#create_account{
+  opacity: 0.84;
+  text-decoration: underline;
+}

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title slot="">Connexion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div id="connexion_panel">
+
+    <ion-card>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating" color="primary" >Adresse mail</ion-label>
+          <ion-input type="email" [(ngModel)]="dataUser.email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating" color="primary" >Mot de passe</ion-label>
+          <ion-input type="password" [(ngModel)]="dataUser.password"></ion-input>
+        </ion-item>
+        <ion-button (click)="login()" block>Connexion</ion-button>
+        <br>
+        <a id="create_account" [routerLink]="['/inscription']"> Créer un compte </a>
+      </ion-card-content>
+    </ion-card>
+    <img src="assets/img/logo_looty.png" id="logo">
+
+
+  </div>
+
+</ion-content>

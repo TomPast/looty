@@ -4,12 +4,36 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'connexion',
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
+    path: 'folder',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  },
+  {
+    path: 'connexion',
+    loadChildren: () => import('./connexion/connexion.module').then( m => m.ConnexionPageModule)
+  },
+  {
+    path: 'inscription',
+    loadChildren: () => import('./inscription/inscription.module').then( m => m.InscriptionPageModule)
+  },
+  {
+    path: 'mon-compte',
+    loadChildren: () => import('./mon-compte/mon-compte.module').then( m => m.MonComptePageModule)
+  },
+  {
+    path: 'classement',
+    loadChildren: () => import('./classement/classement.module').then(m => m.ClassementPageModule)
+  },
+  {
+    path: 'regle',
+    loadChildren: () => import('./regle/regle.module').then( m => m.ReglePageModule)
+  },
+  {
+    path: 'sign-out',
+    loadChildren: () => import('./sign-out/sign-out.module').then( m => m.SignOutPageModule)
   }
 ];
 

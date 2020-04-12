@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title slot="">Inscription</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div id="connexion_panel">
+
+    <ion-card>
+      <ion-card-content>
+          <ion-item>
+            <ion-label position="floating" color="primary">Adresse mail</ion-label>
+            <ion-input type="email" [(ngModel)]="dataUser.email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" color="primary">Pseudo</ion-label>
+            <ion-input [(ngModel)]="dataUser.pseudo"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" color="primary">Mot de passe</ion-label>
+            <ion-input type="password" [(ngModel)]="dataUser.password"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-button (click)="addPhoto('library')" color="tertiary" expand="block">
+                  <ion-icon name="image" slot="start"></ion-icon>
+                  Ouvrir la bibliothèque
+              </ion-button>
+
+              <ion-button (click)="addPhoto('camera')" color="secondary" expand="block">
+                  <ion-icon name="camera" slot="start"></ion-icon>
+                  Prendre une photo
+              </ion-button>
+              <div class="flex">
+                  <div class="img-box">
+                      <img [src]="image">
+                  </div>
+              </div>
+
+          </ion-item>
+
+          <ion-button (click)="uploadFirebase()" color="warning"  expand="block">
+              <ion-icon name="cloud-upload" slot="start"></ion-icon>
+              Envoyer la photo
+          </ion-button>
+
+          <ion-button (click)="signUp()" block>S'inscrire</ion-button>
+      </ion-card-content>
+    </ion-card>
+    <img src="assets/img/logo_looty.png" id="logo">
+
+
+  </div>
+
+</ion-content>

@@ -1,5 +1,7 @@
 {
   "name": "looty",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
