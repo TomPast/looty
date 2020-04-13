@@ -15,16 +15,7 @@ import { Router } from '@angular/router';
 export class ConnexionPage implements OnInit {
 
   constructor(public menu: MenuController, public router: Router, public afAuth: AngularFireAuth, public afDB : AngularFireDatabase, public toastController: ToastController) {
-    this.afAuth.authState.subscribe(auth => {
-      if (!auth) {
-        console.log('non connecté');
-        this.connected = false;
-      } else {
-        console.log('connecté: ' + auth.uid);
-        this.connected = true;
-        this.router.navigateByUrl('/mon-compte');
-      }
-    });
+
   }
 
   dataUser = {
@@ -40,21 +31,13 @@ export class ConnexionPage implements OnInit {
         email: '',
         password: ''
       };
+      this.router.navigateByUrl('/mon-compte');
     }).catch(err => {
       console.log('Erreur: ' + err);
     });
   }
 
   connected: boolean;
-  add() {
-    this.afDB.list('test/').push({
-      pseudo: 'drissas'
-    });
-  }
-
-  ionViewWillEnter() {
-    this.menu.enable(false);
-  }
 
   ngOnInit() {
   }

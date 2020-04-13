@@ -21,26 +21,27 @@
           <ion-row>
             <ion-col size="5" id="avatarCol">
               <ion-avatar>
-                <img src="assets/img/avatar.png" id="avatar">
+                <img src="{{dataUser.img}}" id="avatar">
               </ion-avatar>
             </ion-col>
             <ion-col size="7" id="right-col">
-              <h1>TotoGamer</h1>
-              <ion-text>toto@gmail.com</ion-text>
+              <h1 name="username">{{dataUser.pseudo}}</h1>
+              <ion-text name="mail">{{dataUser.email}}</ion-text>
             </ion-col>
           </ion-row>
         </ion-grid>
 
         <div id="stat">
           <h2>Nombre de parties :</h2>
-          <ion-text> 23 parties</ion-text>
+          <ion-text name="nb_parties" *ngIf="dataUser.nb_parties > 1">{{dataUser.nb_parties}} parties</ion-text>
+          <ion-text name="nb_parties" *ngIf="dataUser.nb_parties <= 1">{{dataUser.nb_parties}} partie</ion-text>
 
           <h2>Nombre de parties remportées :</h2>
-          <ion-text> 23 parties</ion-text>
-
+          <ion-text name="nb_victoires" *ngIf="dataUser.nb_victoires > 1">{{dataUser.nb_victoires}} parties remportées</ion-text>
+          <ion-text name="nb_victoires" *ngIf="dataUser.nb_victoires <= 1">{{dataUser.nb_victoires}} partie remportée</ion-text>
           <h2>Pourcentage de victoire:</h2>
-          <ion-text> 42% de victoire</ion-text>
-          <ion-progress-bar value="0.42"></ion-progress-bar>
+          <ion-text> {{dataUser.poucentage_victoire *100}}% de victoire</ion-text>
+          <ion-progress-bar value="{{dataUser.poucentage_victoire}}"></ion-progress-bar>
         </div>
         <ion-button  block [routerLink]="['/classement']">Classement</ion-button>
       </ion-card-content>

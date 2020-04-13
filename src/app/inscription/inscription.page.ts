@@ -7,6 +7,7 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import { Camera, CameraOptions} from '@ionic-native/camera/ngx'
 import { LoadingController, AlertController } from '@ionic/angular';
 import {Observable} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-inscription',
@@ -36,14 +37,15 @@ export class InscriptionPage implements OnInit {
               public afSG: AngularFireStorage,
               public camera : Camera,
               public loadingController: LoadingController,
-              public alertController: AlertController) {
+              public alertController: AlertController,
+              public router: Router) {
 
     this.imageLoaded = false;
 
   }
 
   ionViewWillEnter() {
-    this.menu.enable(false);
+    //this.menu.enable(false);
   }
 
   ngOnInit() {
@@ -54,12 +56,19 @@ export class InscriptionPage implements OnInit {
     if((this.imageLoaded) && (this.dataUser.pseudo != '') && (this.dataUser.email != '') && (this.dataUser.password != '')){
       this.afAuth.createUserWithEmailAndPassword(this.dataUser.email, this.dataUser.password)
           .then((data) => {
-            console.log('uid',data.user.uid)
+            console.log('uid',data.user.uid);
+            this.dataUser.uid = data.user.uid;
             console.log('Connexion réussie');
-            var imagePath = 'user:'+data.user.uid+'/profilepic/'+ 'profilepicture.jpg'
+            var user = firebase.auth().currentUser;
+            var imagePath = 'user:'+data.user.uid+'/profilepic/'+ 'profilepicture.jpg';
+            this.dataUser.imgURL = imagePath;
+            user.updateProfile({
+              displayName: this.dataUser.pseudo,
+              photoURL: imagePath
+            })
             this.uploadFirebase(data.user.uid).then(()=>{
               console.log('Image Path'+ imagePath);
-              this.writeUserData(data.user.uid, this.dataUser.email, this.dataUser.pseudo, imagePath);
+
             });
           }).catch(err => {
         this.toastMessage("Email ou mot de passe incorrect");
@@ -68,7 +77,6 @@ export class InscriptionPage implements OnInit {
     }else{
       this.toastMessage("Informations manquantes");
     }
-
   };
 
   async toastMessage(msg : string) {
@@ -88,6 +96,7 @@ export class InscriptionPage implements OnInit {
       nb_parties : 0,
       nb_victoires : 0
     });
+
   }
 
   async addPhoto(source: string) {
@@ -143,7 +152,11 @@ export class InscriptionPage implements OnInit {
         message: 'Votre compte a bien été crée !',
         buttons: ['OK']
       });
-      await alert.present();
+      await alert.present().then( data => {
+        this.writeUserData(this.dataUser.uid, this.dataUser.email, this.dataUser.pseudo, this.dataUser.imgURL);
+        this.router.navigateByUrl('/mon-compte');
+      });
+
     });
   }
 
