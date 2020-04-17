@@ -34,4 +34,15 @@ Cela reste encore très flou, et il y a peu de ressources sur internet expliquan
 Difficultés : Prise en main de FireBase Realtime Database (Format de la BDD n'est pas SQL mais un unique arbre JSON) + detection de changement pour actualiser la liste des joueurs en attente en temps réel (changeRef.detectChanges()) + format des requetes 
 
 
+## Modifications à faire
+- Ajout d'un message d'erreur sur la page de connexion (Mot de passe incorrect etc...)
+- Remise en forme de la page inscription avec les deux boutons pour ajouter une image
+
+## Bug à corriger
+- Page de recherche de partie : Lorsque le dernier joueur en attente quitte l'attente, les autres joueurs le voient encore en attente s'il reste sur la page sans faire d'action.
+
+-Page Mon Compte : Lorsque l'utilisateur est déja connecté et lance l'appli, les champs ne sont pas remplis. Il faut recharger la page pour que les informations se remplissent et s'affichent.
+
+
+
 
