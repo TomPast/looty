@@ -17,8 +17,8 @@ Cependant j'avais aussi besoin d'un pseudonyme et d'une photo de profil. J'ai do
 Beaucoup de difficultés + beaucoup de réflexion (comment agencer les modules entre eux), première prise en main du TypeScript...
 
 ### 15/04/2020 : Mon Compte (1h30)
--Récupération des informations de l'utilisateur connecté : pseudo, mail, nombre de parties jouées, gagnées ainsi que la photo de profil
--Remplissage dynamique de la page avec ces informations
+- Récupération des informations de l'utilisateur connecté : pseudo, mail, nombre de parties jouées, gagnées ainsi que la photo de profil
+- Remplissage dynamique de la page avec ces informations
 
 Difficultés : Récupération de la photo de profil à partir de l'URL de l'image stockée sur Firebase Storage
 
@@ -37,11 +37,12 @@ Difficultés : Prise en main de FireBase Realtime Database (Format de la BDD n'e
 ## Modifications à faire
 - Ajout d'un message d'erreur sur la page de connexion (Mot de passe incorrect etc...)
 - Remise en forme de la page inscription avec les deux boutons pour ajouter une image
+- Page Recherche de partie : Ajout de la photo de profil à coté des pseudos
 
 ## Bug à corriger
 - Page de recherche de partie : Lorsque le dernier joueur en attente quitte l'attente, les autres joueurs le voient encore en attente s'il reste sur la page sans faire d'action.
 
--Page Mon Compte : Lorsque l'utilisateur est déja connecté et lance l'appli, les champs ne sont pas remplis. Il faut recharger la page pour que les informations se remplissent et s'affichent.
+- Page Mon Compte : Lorsque l'utilisateur est déja connecté et lance l'appli, les champs ne sont pas remplis. Il faut recharger la page pour que les informations se remplissent et s'affichent.
 
 
 
