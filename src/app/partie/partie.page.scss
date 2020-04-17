@@ -1,0 +1,99 @@
+ion-toolbar{
+  --background: #0B222C;
+  --color: white;
+}
+
+ion-content{
+  --background: #E1E2E1;
+}
+ion-title#pageName{
+  text-align: center;
+  font-weight: 500;
+}
+
+#logo{
+  width: 54px;
+  height: 40px;
+  filter: drop-shadow(0 0 0.75rem #000000);
+
+}
+
+#cartes{
+  top:-16px;
+  position: relative;
+  background-color: #344955;
+  width: 100%;
+  height: 200px;
+}
+
+h5{
+  text-align: center;
+  color: white;
+  font-size: 20px ;
+}
+
+.container {
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+  white-space: nowrap;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .scroll {
+    overflow: auto;
+  }
+}
+
+.carte{
+  height: 120px;
+  padding-right: 10px;
+}
+
+#premiere_carte{
+  padding-left: 5px;
+}
+
+#premier_ligne{
+  width: 100%;
+  background-color: blue;
+}
+
+ion-card{
+  width: 103%;
+  margin-left:5px;
+  height: 150px;
+}
+
+ion-avatar{
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(0 0 0.5rem #757575);
+}
+
+.pseudo{
+  display: block;
+  color:#344955;
+  font-weight: bold;
+  margin-top: 10px;
+  vertical-align: middle;
+}
+
+.img{
+  width: 40px;
+  height: 40px;
+}
+
+.coffre{
+  position: relative;
+}
+#notifications-badge{
+  position: relative;
+  top: -10px;
+  right:10px;
+  --background: blue !important;
+}
+
+ion-text.nb_coffre{
+  font-family: 'PixelSplitter' !important;
+}

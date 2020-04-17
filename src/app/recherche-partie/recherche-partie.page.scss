@@ -1,0 +1,19 @@
+ion-toolbar{
+  --background: #344955;
+  --color: white;
+}
+ion-content{
+  --background: #E1E2E1;
+}
+
+ion-title#pageName{
+  text-align: center;
+  font-weight: 500;
+}
+
+#logo{
+  width: 54px;
+  height: 40px;
+  filter: drop-shadow(0 0 0.75rem #000000);
+  margin-right: 15px;
+}

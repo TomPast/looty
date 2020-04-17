@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <img src="assets/img/logo_looty.png" id="logo">
+    </ion-buttons>
+    <ion-title id="pageName">Partie en cours</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div id="cartes"> d
+    <h5>Manche 1/5</h5>
+    <div class="container">
+      <div class="scroll" scrollX="true">
+        <!--<span *ngFor="let item of items | async">{{item.ProjectEvent}}</span>-->
+        <img class="carte" id="premiere_carte" src="assets/img/cartes/deck.png">
+        <img class="carte" src="assets/img/cartes/carte_1.png">
+        <img class="carte" src="assets/img/cartes/carte_2.png">
+        <img class="carte" src="assets/img/cartes/carte_3.png">
+        <img class="carte" src="assets/img/cartes/carte_4.png">
+      </div>
+    </div>
+  </div>
+  <ion-row id="premier_ligne">
+    <ion-col>
+      <ion-card class="joueur">
+        <ion-row>
+          <ion-col>
+            <ion-avatar>
+              <img src="assets/img/avatar.png">
+            </ion-avatar>
+          </ion-col>
+          <ion-col>
+            <ion-text class="pseudo">TotoGamer</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <div class="coffre">
+            <img class="img" src="assets/img/coffre.png">
+            <ion-text class="nb_coffre">12</ion-text>
+          </div>
+
+        </ion-row>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card>
+        hello s
+      </ion-card>
+    </ion-col><ion-col>
+    <ion-card>
+      hello s
+    </ion-card>
+  </ion-col>
+
+  </ion-row>
+
+
+
+</ion-content>

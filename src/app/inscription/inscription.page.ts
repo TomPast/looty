@@ -52,6 +52,7 @@ export class InscriptionPage implements OnInit {
   }
 
   signUp() {
+
     console.log(this.dataUser.pseudo);
     if((this.imageLoaded) && (this.dataUser.pseudo != '') && (this.dataUser.email != '') && (this.dataUser.password != '')){
       this.afAuth.createUserWithEmailAndPassword(this.dataUser.email, this.dataUser.password)
@@ -156,7 +157,6 @@ export class InscriptionPage implements OnInit {
         this.writeUserData(this.dataUser.uid, this.dataUser.email, this.dataUser.pseudo, this.dataUser.imgURL);
         this.router.navigateByUrl('/mon-compte');
       });
-
     });
   }
 

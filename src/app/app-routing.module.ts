@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'connexion',
+    redirectTo: 'partie',
     pathMatch: 'full'
   },
   {
@@ -34,6 +34,14 @@ const routes: Routes = [
   {
     path: 'sign-out',
     loadChildren: () => import('./sign-out/sign-out.module').then( m => m.SignOutPageModule)
+  },
+  {
+    path: 'partie',
+    loadChildren: () => import('./partie/partie.module').then( m => m.PartiePageModule)
+  },
+  {
+    path: 'recherche-partie',
+    loadChildren: () => import('./recherche-partie/recherche-partie.module').then( m => m.RecherchePartiePageModule)
   }
 ];
 

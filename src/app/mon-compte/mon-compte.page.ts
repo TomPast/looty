@@ -61,7 +61,6 @@ export class MonComptePage implements OnInit {
   ionViewCanEnter(): boolean {
     if(this.loaded == true) {
       return true;
-      console.log("CEST BON");
     }
     return false;
   }
