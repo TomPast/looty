@@ -33,6 +33,23 @@ Cela reste encore très flou, et il y a peu de ressources sur internet expliquan
 
 Difficultés : Prise en main de FireBase Realtime Database (Format de la BDD n'est pas SQL mais un unique arbre JSON) + detection de changement pour actualiser la liste des joueurs en attente en temps réel (changeRef.detectChanges()) + format des requetes 
 
+### 18/04/2020 : Création d'une partie (5h00)
+Utilisation de FireBase Cloud Functions permettant d'executer des fonctions depuis le backend à partir de trigger provenant de la base de donnée en temps réel. J'ai pour l'instant crée deux fonctions :
+- Fonction qui s'exécute à chaque fois qu'un joueur passe en attente d'une partie
+A chaque fois, on vérifie si on a atteint le nombre minimum de joueurs requis. Si c'est le cas, on supprime ces joueurs de la salle d'attente, on crée une partie qui aura pour nom la concaténation de tous les UID des joueurs présents dans la partie et on initialise toutes les valeurs utiles pour la parties.
+
+- Fonction qui s'exécute à chaque fois que le champ manche est crée ou actualisé
+A chaque fois, on mélange l'ensemble des cartes
+
+Pour les cartes faire un tableau du style (num_carte (nom_carte, diamant))
+0 -> ("piege1",0)
+1 -> ("carte1",3)
+
+Fonctions à rajouter :
+- A chaque fois que taille de player en attente == NUM_PLAYER ou que la taille de player en jeu == 0, alors fin du tour ->  on pick une carte (incremente carte_en_cours) + distribution des diamants à la fin du tour (encore en mine) + distribution des diamants restants répartis avec tous les joueurs
+- A chaque fois que update(carte_en_cours) -> On vérifie qu'on a pas deux pièges similaires qui sont sortis -> Fin de manche (mance: incremente(1))
+- A chaque fois que manche est update, vérifier que manche <= 5 sinon => fin de partie avec podium
+
 
 ## Modifications à faire
 - Ajout d'un message d'erreur sur la page de connexion (Mot de passe incorrect etc...)
@@ -42,7 +59,7 @@ Difficultés : Prise en main de FireBase Realtime Database (Format de la BDD n'e
 ## Bug à corriger
 - Page de recherche de partie : Lorsque le dernier joueur en attente quitte l'attente, les autres joueurs le voient encore en attente s'il reste sur la page sans faire d'action.
 
-- Page Mon Compte : Lorsque l'utilisateur est déja connecté et lance l'appli, les champs ne sont pas remplis. Il faut recharger la page pour que les informations se remplissent et s'affichent.
+- CORRIGÉ 18/04/2020 : Page Mon Compte : Lorsque l'utilisateur est déja connecté et lance l'appli, les champs ne sont pas remplis. Il faut recharger la page pour que les informations se remplissent et s'affichent.
 
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {MenuController} from '@ionic/angular';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFireDatabase} from '@angular/fire/database';
@@ -23,7 +23,7 @@ export class MonComptePage implements OnInit {
   ref : any;
   loaded : boolean;
 
-  constructor(public menu: MenuController,public afAuth: AngularFireAuth, public afDB : AngularFireDatabase, public afSG : AngularFireStorage) {
+  constructor(public menu: MenuController,public afAuth: AngularFireAuth, public afDB : AngularFireDatabase, public afSG : AngularFireStorage,private changeRef: ChangeDetectorRef) {
     this.loaded = false;
   }
 
@@ -48,7 +48,8 @@ export class MonComptePage implements OnInit {
           this.dataUser.img = url;
           this.loaded = true;
           console.log("IMAGE CHARGEE");
-        }).catch(function(error) {
+          this.changeRef.detectChanges();
+        }).catch(error => {
           this.dataUser.img = "assets/img/avatar.png"; //Si erreur on affiche l'avatar de base
           this.loaded = true;
           console.log("IMAGE BUGGEE");
