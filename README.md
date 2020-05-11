@@ -49,7 +49,7 @@ Fonctions à rajouter :
 - A chaque fois que taille de player en attente == NUM_PLAYER ou que la taille de player en jeu == 0, alors fin du tour ->  on pick une carte (incremente carte_en_cours) + distribution des diamants à la fin du tour (encore en mine) + distribution des diamants restants répartis avec tous les joueurs
 - A chaque fois que update(carte_en_cours) -> On vérifie qu'on a pas deux pièges similaires qui sont sortis -> Fin de manche (mance: incremente(1))
 - A chaque fois que manche est update, vérifier que manche <= 5 sinon => fin de partie avec podium
-
+Structure BBD firebase pour la partie jeu :
 ![Structure BBD firebase pour la partie jeu](/images/arbre_game.png)
 
 ### Séances de TP 7/05/2020 et 11/05/2020: Redirection utilisateur + binding (Séances de TP : 6h00)
@@ -59,6 +59,7 @@ Redirection de l'utilisateur une fois que la partie a été créee (salle d'atte
 Positionnement des éléments de jeu en statique + parse des données de la base de donnée dans un objet TypeScript.
 J'ai l'impression de ne pas avoir avancé beaucoup ce soir malgré le temps passé, j'ai rencontré pas mal de soucis un peu bête mais qui m'ont pris du temps à résoudre.
 
+Eléments de jeu statique :
 ![Eléments de jeu statique](/images/partie.png)
 
 
