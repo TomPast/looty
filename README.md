@@ -50,7 +50,7 @@ Fonctions à rajouter :
 - A chaque fois que update(carte_en_cours) -> On vérifie qu'on a pas deux pièges similaires qui sont sortis -> Fin de manche (mance: incremente(1))
 - A chaque fois que manche est update, vérifier que manche <= 5 sinon => fin de partie avec podium
 
-### 7/05/2020 et 11/05/2020: Redirection utilisateur + binding
+### 7/05/2020 et 11/05/2020: Redirection utilisateur + binding (6h00)
 Redirection de l'utilisateur une fois que la partie a été créee (salle d'attente complète) + passage de l'ID de la partie en paramètre de l'URL + récupération des informations depuis la page de jeu en faisant un binding avec les informations de la base de données en temps réelle.
 
 
