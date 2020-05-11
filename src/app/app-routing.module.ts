@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'partie/8',
+    redirectTo: 'connexion',
     pathMatch: 'full'
   },
   {

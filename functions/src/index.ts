@@ -22,44 +22,49 @@ exports.onNewPlayer = functions
     .ref('/waitingRoom/{playerId}')
     .onCreate((snapshot, context) => {
         let parent = admin.database().ref("/waitingRoom");
-        parent.once("value")
-            .then(function(parentSnapshot) {
-                let NUM_PLAYERS = 2;
-                let numChildren = parentSnapshot.numChildren();
-                if(numChildren >= NUM_PLAYERS){
-                    console.log("Création de jeu");
-                    let GameId = '';
-                    players = [];
-                    parentSnapshot.forEach(function(childSnapshot) {
-                        players.push(childSnapshot.key);
-                        GameId += childSnapshot.key;
+        parent.once("value").then(function(parentSnapshot) {
+            let NUM_PLAYERS = 2;
+            let numChildren = parentSnapshot.numChildren();
+            if(numChildren >= NUM_PLAYERS){
+                console.log("Création de jeu");
+                let GameId = '';
+                players = [];
+                parentSnapshot.forEach(function(childSnapshot) {
+                    players.push(childSnapshot.key);
+                    GameId += childSnapshot.key;
 
-                        let ref = admin.database().ref('waitingRoom/'+ childSnapshot.key);//On retire les joueurs de la salle d'attente
-                        ref.remove();
-                    });
+                    let ref = admin.database().ref('waitingRoom/'+ childSnapshot.key);//On retire les joueurs de la salle d'attente
+                    ref.remove();
+                });
 
-                    let index = 0;
-                    parentSnapshot.forEach(function(childSnapshot) {
-                        admin.database().ref("/games/"+GameId).child("players").child(String(childSnapshot.key)).update({
-                            num_joueur : index,
-                            etat : 'mine',
-                            status : 'jeu',
-                            nb_diamant_total : 0,
-                            nb_diamant_manche : 0
-                        })
-                        index++;
-                    });
-
-                    admin.database().ref("/games").child(GameId).update({//On crée une partie avec les joueurs dedans
-                        manche : 1,
-                        playerEnAttente : '',
-                        playerEnJeu : players,
-                        nb_joueurs_total : numChildren,
-                        nb_joueurs_mine : numChildren,
+                let index = 0;
+                parentSnapshot.forEach(function(childSnapshot) {
+                    admin.database().ref("/games/"+GameId).child("players").child(String(childSnapshot.key)).update({
+                        num_joueur : index,
+                        etat : 'mine',
+                        status : 'jeu',
+                        nb_diamant_total : 0,
+                        nb_diamant_manche : 0
                     })
-                }
-            })
-        return null;
+                    index++;
+                    admin.database().ref("/users").child(String(childSnapshot.key)).update({
+                        partie_en_cours: GameId
+                    })
+                });
+                let foo = Array.from(Array(30).keys());
+                foo = melange(foo);
+                admin.database().ref("/games").child(GameId).update({//On crée une partie avec les joueurs dedans
+                    cartes : foo,
+                    manche : 1,
+                    carte_en_cours : 0,
+                    playerEnAttente : '',
+                    playerEnJeu : players,
+                    nb_joueurs_total : numChildren,
+                    nb_joueurs_mine : numChildren,
+                    nb_joueurs_camp : 0
+                }).then((value)=>{return null;});
+            }
+        })
     });
 
 // A chaque fois qu'on passe à une nouvelle manche, on tire au hasard les cartes de jeu.
@@ -91,7 +96,7 @@ exports.onFinMancheMine = functions
     .region('europe-west1')
     .database
     .ref('/games/{gameID}/nb_joueurs_camp')
-    .onWrite((snapshot, context) => {
+    .onUpdate((snapshot, context) => {
         admin.database().ref("/games/"+context.params.gameID+"/nb_joueurs_camp").once("value").then(function(Snapshot) {
             let nb_joueurs = 0;
             if(Snapshot.key != null && Snapshot.val()!=0) {
@@ -107,38 +112,6 @@ exports.onFinMancheMine = functions
                     }
                 })
             }
-        })
-        return null;
-    });
-
-exports.onFirstManche = functions
-    .region('europe-west1')
-    .database
-    .ref('/games/{gameID}/manche')
-    .onCreate((snapshot, context) => {
-
-        let foo = Array.from(Array(30).keys());
-        foo = melange(foo);
-
-        let nb_joueurs = 0;
-        admin.database().ref("/games/"+context.params.gameID+"/nb_joueurs_total").once("value").then(function(parentSnapshot) {
-            nb_joueurs= parentSnapshot.val();
-            admin.database().ref("/games").child(context.params.gameID).update({
-                cartes : foo,
-                carte_en_cours : 0,
-                playerEnAttente : '',
-                nb_joueurs_mine : nb_joueurs,
-                nb_joueurs_camp : 0
-            }).then(function(Snapshot) {
-                admin.database().ref("/games/"+context.params.gameID+"/players").once("value").then(function(parentSnapshot) {
-                    parentSnapshot.forEach(function(childSnapshot) {
-                        console.log("TEST : "+context.params.gameID);
-                        admin.database().ref("/users").child(String(childSnapshot.key)).update({
-                            partie_en_cours: context.params.gameID
-                        })
-                    });
-                });
-            });
         })
         return null;
     });
