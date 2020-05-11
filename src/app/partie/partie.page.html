@@ -9,9 +9,10 @@
     <ion-title id="pageName">Partie en cours</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
-  <div id="cartes"> d
-    <h5>Manche 1/5</h5>
+  <div id="cartes">
+    <h5>Manche {{this.GAME.manche}}/5</h5>
     <div class="container">
       <div class="scroll" scrollX="true">
         <!--<span *ngFor="let item of items | async">{{item.ProjectEvent}}</span>-->
@@ -20,6 +21,10 @@
         <img class="carte" src="assets/img/cartes/carte_2.png">
         <img class="carte" src="assets/img/cartes/carte_3.png">
         <img class="carte" src="assets/img/cartes/carte_4.png">
+        <img class="carte" src="assets/img/cartes/carte_4.png">
+        <img class="carte" src="assets/img/cartes/carte_4.png">
+        <img class="carte" src="assets/img/cartes/carte_4.png">
+
       </div>
     </div>
   </div>
@@ -37,10 +42,16 @@
           </ion-col>
         </ion-row>
         <ion-row>
-          <div class="coffre">
-            <img class="img" src="assets/img/coffre.png">
-            <ion-text class="nb_coffre">12</ion-text>
-          </div>
+          <ion-col>
+
+          </ion-col>
+          <ion-col>
+            <div class="coffre">
+              <img class="img" src="assets/img/coffre.png">
+              <ion-text class="nb_coffre">12</ion-text>
+            </div>
+          </ion-col>
+
 
         </ion-row>
       </ion-card>

@@ -52,7 +52,6 @@ export class InscriptionPage implements OnInit {
   }
 
   signUp() {
-
     console.log(this.dataUser.pseudo);
     if((this.imageLoaded) && (this.dataUser.pseudo != '') && (this.dataUser.email != '') && (this.dataUser.password != '')){
       this.afAuth.createUserWithEmailAndPassword(this.dataUser.email, this.dataUser.password)
@@ -69,7 +68,6 @@ export class InscriptionPage implements OnInit {
             })
             this.uploadFirebase(data.user.uid).then(()=>{
               console.log('Image Path'+ imagePath);
-
             });
           }).catch(err => {
         this.toastMessage("Email ou mot de passe incorrect");
@@ -95,7 +93,8 @@ export class InscriptionPage implements OnInit {
       email: email,
       profile_picture : imageUrl,
       nb_parties : 0,
-      nb_victoires : 0
+      nb_victoires : 0,
+      partie_en_cours: ''
     });
 
   }

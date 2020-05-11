@@ -11,7 +11,7 @@ import increment = firebase.database.ServerValue.increment;
 // });
 
 admin.initializeApp();
-let NUM_PLAYERS = 2;
+
 let players : any[];
 
 
@@ -24,6 +24,7 @@ exports.onNewPlayer = functions
         let parent = admin.database().ref("/waitingRoom");
         parent.once("value")
             .then(function(parentSnapshot) {
+                let NUM_PLAYERS = 2;
                 let numChildren = parentSnapshot.numChildren();
                 if(numChildren >= NUM_PLAYERS){
                     console.log("Création de jeu");
@@ -48,15 +49,14 @@ exports.onNewPlayer = functions
                         })
                         index++;
                     });
+
                     admin.database().ref("/games").child(GameId).update({//On crée une partie avec les joueurs dedans
                         manche : 1,
                         playerEnAttente : '',
                         playerEnJeu : players,
                         nb_joueurs_total : numChildren,
                         nb_joueurs_mine : numChildren,
-                        nb_joueurs_camp : 0
                     })
-                    // + tirage de cartes + delete les joueurs dans la salle d'attente !
                 }
             })
         return null;
@@ -67,7 +67,7 @@ exports.onNewManche = functions
     .region('europe-west1')
     .database
     .ref('/games/{gameID}/manche')
-    .onWrite((snapshot, context) => {
+    .onUpdate((snapshot, context) => {
         let foo = Array.from(Array(30).keys());
         foo = melange(foo);
 
@@ -91,26 +91,57 @@ exports.onFinMancheMine = functions
     .region('europe-west1')
     .database
     .ref('/games/{gameID}/nb_joueurs_camp')
-    .onUpdate((snapshot, context) => {
+    .onWrite((snapshot, context) => {
         admin.database().ref("/games/"+context.params.gameID+"/nb_joueurs_camp").once("value").then(function(Snapshot) {
             let nb_joueurs = 0;
-            admin.database().ref("/games/"+context.params.gameID+"/nb_joueurs_total").once("value").then(function(parentSnapshot) {
-                nb_joueurs= parentSnapshot.val();
-                if(Snapshot.key != null){
-                    console.log("VALEUR : "+Snapshot.val());
-                    console.log("NBJOEUR : "+nb_joueurs);
-                    if(nb_joueurs== +Snapshot.val()){
+            if(Snapshot.key != null && Snapshot.val()!=0) {
+                admin.database().ref("/games/" + context.params.gameID + "/nb_joueurs_total").once("value").then(function(parentSnapshot) {
+                    nb_joueurs = parentSnapshot.val();
+                    console.log("VALEUR : " + Snapshot.val());
+                    console.log("NBJOUEUR : " + nb_joueurs);
+                    if (nb_joueurs == +Snapshot.val()) {
                         //FIN DE LA MANCHE
                         admin.database().ref("/games").child(context.params.gameID).update({
                             manche: increment(1)
                         })
                     }
-                }
-            })
+                })
+            }
         })
         return null;
     });
 
+exports.onFirstManche = functions
+    .region('europe-west1')
+    .database
+    .ref('/games/{gameID}/manche')
+    .onCreate((snapshot, context) => {
+
+        let foo = Array.from(Array(30).keys());
+        foo = melange(foo);
+
+        let nb_joueurs = 0;
+        admin.database().ref("/games/"+context.params.gameID+"/nb_joueurs_total").once("value").then(function(parentSnapshot) {
+            nb_joueurs= parentSnapshot.val();
+            admin.database().ref("/games").child(context.params.gameID).update({
+                cartes : foo,
+                carte_en_cours : 0,
+                playerEnAttente : '',
+                nb_joueurs_mine : nb_joueurs,
+                nb_joueurs_camp : 0
+            }).then(function(Snapshot) {
+                admin.database().ref("/games/"+context.params.gameID+"/players").once("value").then(function(parentSnapshot) {
+                    parentSnapshot.forEach(function(childSnapshot) {
+                        console.log("TEST : "+context.params.gameID);
+                        admin.database().ref("/users").child(String(childSnapshot.key)).update({
+                            partie_en_cours: context.params.gameID
+                        })
+                    });
+                });
+            });
+        })
+        return null;
+    });
 
 //Permet de mélanger les cartes de manière aléatoire (Mélange de Fisher-Yates)
 //Source de l'algorithme : https://github.com/Daplie/knuth-shuffle

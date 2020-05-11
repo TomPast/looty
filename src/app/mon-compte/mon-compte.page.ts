@@ -47,12 +47,10 @@ export class MonComptePage implements OnInit {
         pathReference.getDownloadURL().then(url => {
           this.dataUser.img = url;
           this.loaded = true;
-          console.log("IMAGE CHARGEE");
           this.changeRef.detectChanges();
         }).catch(error => {
           this.dataUser.img = "assets/img/avatar.png"; //Si erreur on affiche l'avatar de base
           this.loaded = true;
-          console.log("IMAGE BUGGEE");
         });
       } else {
         // No user is signed in.

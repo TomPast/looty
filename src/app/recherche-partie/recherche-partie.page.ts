@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireAuth} from '@angular/fire/auth';
 import * as firebase from 'firebase';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-recherche-partie',
@@ -16,7 +17,7 @@ export class RecherchePartiePage implements OnInit {
 
   ref_waiting = firebase.database().ref('waitingRoom');
 
-  constructor(public afDB : AngularFireDatabase,public afAuth: AngularFireAuth,private changeRef: ChangeDetectorRef) {
+  constructor(public afDB : AngularFireDatabase,public afAuth: AngularFireAuth,private changeRef: ChangeDetectorRef, private router: Router) {
 
   }
 
@@ -28,9 +29,10 @@ export class RecherchePartiePage implements OnInit {
         this.pseudo = user.displayName;
         this.listUserWaiting = [];
         this.getUsersWaiting(); //Récupération et affichage de tous les utilisateurs en attente
+        this.getCurrentGame();
         this.userWait(); //L'utilisateur passe en attente
       } else {
-        // No user is signed in.
+        this.router.navigateByUrl('/connexion');
       }
     });
   }
@@ -38,6 +40,7 @@ export class RecherchePartiePage implements OnInit {
   ionViewWillLeave(){
     this.userLeaveQueue();
     this.ref_waiting.off();
+    this.afDB.database.ref(this.user_id).child('partie_en_cours').off();
   }
 
   //------------------------------
@@ -52,10 +55,18 @@ export class RecherchePartiePage implements OnInit {
   }
 
   //---------------------------------------------------------------------------------------------------------
-  //Remplis listUserWaiting avec les pseudo des personnes attendant de trouver une partie (autoactualisation)
+  //Rempli listUserWaiting avec les pseudo des personnes attendant de trouver une partie (autoactualisation)
   //---------------------------------------------------------------------------------------------------------
-  getUsersWaiting() {
+  getCurrentGame() {
+    //Récupération des UID des personnes présentes dans la waitingRoom
+    this.afDB.database.ref('/users/'+this.user_id).child('partie_en_cours').on("value", (snapshot, prevChildKey) => {
+      if(snapshot.val() != ''){
+        this.router.navigateByUrl('/partie/'+snapshot.val());
+      }
+    })
+  }
 
+  getUsersWaiting(){
     //Récupération des UID des personnes présentes dans la waitingRoom
     this.ref_waiting.on("value", (snapshot, prevChildKey) => {
       this.listUserWaiting = [];

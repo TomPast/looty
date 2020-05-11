@@ -15,6 +15,7 @@ import { AngularFireAuthModule} from '@angular/fire/auth';
 import { AngularFireStorageModule} from '@angular/fire/storage';
 
 import { Camera } from '@ionic-native/camera/ngx';
+import {HttpClientModule} from '@angular/common/http';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCJMIDZM7YzXMrZyISCzTNSPSTa4QVMiEY',
@@ -38,6 +39,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,

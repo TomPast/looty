@@ -22,28 +22,29 @@
             <ion-label position="floating" color="primary">Mot de passe</ion-label>
             <ion-input type="password" [(ngModel)]="dataUser.password"></ion-input>
           </ion-item>
+
           <ion-item>
-              <ion-button (click)="addPhoto('library')" color="tertiary" expand="block">
-                  <ion-icon name="image" slot="start"></ion-icon>
-                  Ouvrir la bibliothèque
-              </ion-button>
-
-              <ion-button (click)="addPhoto('camera')" color="secondary" expand="block">
-                  <ion-icon name="camera" slot="start"></ion-icon>
-                  Prendre une photo
-              </ion-button>
-              <div class="flex">
-                  <div class="img-box">
-                      <img [src]="image">
-                  </div>
-              </div>
-
+              <ion-label color="primary" position="floating">Photo de profil :</ion-label>
+              <ion-row id="AddPhoto">
+                  <ion-col>
+                      <ion-button (click)="addPhoto('library')" color="tertiary" expand="block" class="imageButton">
+                          Bibliothèque
+                      </ion-button>
+                  </ion-col>
+                  <ion-col>
+                      <ion-button (click)="addPhoto('camera')" color="secondary" expand="block" class="imageButton">
+                          Appareil photo
+                      </ion-button>
+                  </ion-col>
+              </ion-row>
           </ion-item>
 
-          <ion-button (click)="uploadFirebase()" color="warning"  expand="block">
-              <ion-icon name="cloud-upload" slot="start"></ion-icon>
-              Envoyer la photo
-          </ion-button>
+          <div class="flex">
+              <div class="img-box">
+                  <img [src]="image">
+              </div>
+          </div>
+
 
           <ion-button (click)="signUp()" block>S'inscrire</ion-button>
       </ion-card-content>

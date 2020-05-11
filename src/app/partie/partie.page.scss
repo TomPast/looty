@@ -84,9 +84,7 @@ ion-avatar{
   height: 40px;
 }
 
-.coffre{
-  position: relative;
-}
+
 #notifications-badge{
   position: relative;
   top: -10px;
@@ -94,6 +92,15 @@ ion-avatar{
   --background: blue !important;
 }
 
+.coffre{
+  position: relative;
+  top:-15px;
+}
 ion-text.nb_coffre{
   font-family: 'PixelSplitter' !important;
+  filter: drop-shadow(0 0 0.5rem #757575);
+  color:black;
+  position: relative;
+  left:-30px;
+  top:-15px;
 }
