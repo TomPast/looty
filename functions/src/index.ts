@@ -39,8 +39,8 @@ exports.onNewPlayer = functions
 
                 let index = 0;
                 parentSnapshot.forEach(function(childSnapshot) {
-                    admin.database().ref("/games/"+GameId).child("players").child(String(childSnapshot.key)).update({
-                        num_joueur : index,
+                    admin.database().ref("/games/"+GameId).child("players").child(index.toString()).update({
+                        uid : String(childSnapshot.key),
                         etat : 'mine',
                         status : 'jeu',
                         nb_diamant_total : 0,
@@ -57,8 +57,7 @@ exports.onNewPlayer = functions
                     cartes : foo,
                     manche : 1,
                     carte_en_cours : 0,
-                    playerEnAttente : '',
-                    playerEnJeu : players,
+                    playerEnAttente : 0,
                     nb_joueurs_total : numChildren,
                     nb_joueurs_mine : numChildren,
                     nb_joueurs_camp : 0
@@ -82,13 +81,11 @@ exports.onNewManche = functions
             admin.database().ref("/games").child(context.params.gameID).update({
                 cartes : foo,
                 carte_en_cours : 0,
-                playerEnAttente : '',
+                playerEnAttente : 0,
                 nb_joueurs_mine : nb_joueurs,
                 nb_joueurs_camp : 0
             })
         })
-
-
         return null;
     });
 

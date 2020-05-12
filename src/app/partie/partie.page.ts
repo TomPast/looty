@@ -17,55 +17,66 @@ export class PartiePage implements OnInit {
   GAMEID = '';
   GAME: game;
   players = new Array<player>();
-  playersDisplay= new Array<playerDisplay>();
+  playersDisplay;
 
-  constructor(private route: ActivatedRoute,private afDB : AngularFireDatabase,private afSG : AngularFireStorage) {
+  constructor(private route: ActivatedRoute,private afDB : AngularFireDatabase, private afSG : AngularFireStorage) {
     this.GAME = new game();
   }
 
   ionViewWillEnter(){
+    this.GAMEID = this.route.snapshot.params['GAMEID'];
+    this.getPlayersNameAndPicture();
+    this.afDB.database.ref('/games/').child(this.GAMEID).on("value", (snapshot, prevChildKey) => {
+      this.GAME = snapshot.val();
+      console.dir(this.GAME);
+      console.log(Array.isArray(this.GAME.players));
+      console.log(this.GAME.players[0].status);
 
+    });
   }
 
   ngOnInit() {
-    this.GAMEID = this.route.snapshot.params['GAMEID'];
-    this.afDB.database.ref('/games/').child(this.GAMEID).on("value", (snapshot, prevChildKey) => {
-      this.GAME = snapshot.val();
-      console.dir(snapshot.val());
 
-      console.log(this.GAME.manche);
-      console.log(this.GAME.cartes[0]);
-      console.log(this.GAME.playerEnJeu[0]);
-      console.dir(this.GAME.players);
-    })
-    console.dir(this.GAME.players);
-    this.getPlayers();
-    this.getPlayersNameAndPicture()
-    console.log(Array.isArray(this.playersDisplay));
   }
 
   getPlayers(){
     this.afDB.database.ref("/games/").child(this.GAMEID).child('players').on("value", (parentSnapshot, prevChildKey) => {
       this.players = new Array<player>();
       parentSnapshot.forEach((childSnapshot)=> {
-        console.log(childSnapshot.key);
         this.players.push(childSnapshot.val());
       });
     });
   }
 
   getPlayersNameAndPicture(){
+    this.playersDisplay= new Array<playerDisplay>()
     this.afDB.database.ref("/games/").child(this.GAMEID).child('players').once("value", (parentSnapshot, prevChildKey) => {
       parentSnapshot.forEach((childSnapshot)=> {
-        console.log(childSnapshot.key);
-        this.afDB.database.ref("/users/").child(String(childSnapshot.key)).once("value", (snapshot, prevChildKey2) => {
-          let playerD = new playerDisplay(snapshot.val().pseudo, snapshot.val().profile_picture, this.afSG);
-          console.dir(playerD);
+        this.afDB.database.ref("/users/").child(childSnapshot.val().uid).once("value", (snapshot, prevChildKey2) => {
+          let playerD = new playerDisplay(childSnapshot.val().uid,snapshot.val().pseudo, snapshot.val().profile_picture, this.afSG);
           this.playersDisplay.push(playerD);
         });
       });
     });
-    console.log(Array.isArray(this.playersDisplay));
+  }
+
+  getPseudo(UID:string): string{
+    this.afDB.database.ref("/users/").child(UID).once("value", (snapshot, prevChildKey2) => {
+      console.log(snapshot.val().pseudo);
+      return snapshot.val().pseudo;
+    });
+    return '';
+  }
+
+  getImage(UID:string): string{
+    this.afDB.database.ref("/users/").child(UID).once("value", (snapshot, prevChildKey2) => {
+      let storage = this.afSG.storage;
+      let pathReference = storage.ref(snapshot.val().profile_picture);
+      pathReference.getDownloadURL().then(url => {
+        return url;
+      });
+    });
+    return '';
   }
 
 }

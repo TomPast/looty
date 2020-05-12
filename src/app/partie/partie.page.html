@@ -17,19 +17,16 @@
       <div class="scroll" scrollX="true">
         <!--<span *ngFor="let item of items | async">{{item.ProjectEvent}}</span>-->
         <img class="carte" id="premiere_carte" src="assets/img/cartes/deck.png">
-        <img class="carte" src="assets/img/cartes/1.png">
-        <img class="carte" src="assets/img/cartes/2.png">
-        <img class="carte" src="assets/img/cartes/3.png">
-        <img class="carte" src="assets/img/cartes/4.png">
-        <img class="carte" src="assets/img/cartes/4.png">
-        <img class="carte" src="assets/img/cartes/4.png">
-        <img class="carte" src="assets/img/cartes/4.png">
+        <span *ngFor="let carte of this.GAME.cartes, let i = index;">
+          <img class="carte"  src="assets/img/cartes/{{carte}}.png" *ngIf="i<=GAME.carte_en_cours">
+        </span>
+
 
       </div>
     </div>
   </div>
   <ion-row id="premier_ligne">
-    <ion-col *ngFor="let player of this.players, let i = index;"  >
+    <ion-col *ngFor="let player of this.GAME.players, let i = index;"  >
       <ion-card class="joueur">
         <div class="entete">
           <ion-avatar>

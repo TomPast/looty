@@ -22,6 +22,10 @@ Beaucoup de difficultés + beaucoup de réflexion (comment agencer les modules e
 
 Difficultés : Récupération de la photo de profil à partir de l'URL de l'image stockée sur Firebase Storage
 
+### 16/04/2020 : Création des assets graphiques (2h00)
+- Retravailler le logo
+- Créer le design des cartes de diamant, piège et trésor.
+
 ### 17/04/2020 : Système d'attente d'avant partie (5h00)
 Je n'avais pas pensé à ça lors de la création de ma maquette. J'ai donc du réfléchir à un système de salle d'attente où les joueurs patientent jusqu'à être 5 et commencer une partie.
 On a donc une page qui s'auto-actualise avec les pseudo des joueurs en attente.
@@ -63,9 +67,9 @@ Eléments de jeu statique :
 ![Eléments de jeu statique](/images/partie.png)
 
 ### 12/05/2020 (2h00)
--Fin du binding pour la partie joueur : récupération des pseudos des joueurs dans la partie, de leurs images de profil et des données de jeu de chacun. (2h00)
+-Fin du binding pour la partie joueur : récupération des pseudos des joueurs dans la partie, de leurs images de profil et des données de jeu de chacun. + récupération des cartes (2h00)
 Illustration:
-![Eléments de jeu statique](/images/binding.gif)
+![Binding](/images/binding.gif)
 
 
 
