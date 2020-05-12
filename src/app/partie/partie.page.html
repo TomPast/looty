@@ -17,25 +17,50 @@
       <div class="scroll" scrollX="true">
         <!--<span *ngFor="let item of items | async">{{item.ProjectEvent}}</span>-->
         <img class="carte" id="premiere_carte" src="assets/img/cartes/deck.png">
-        <img class="carte" src="assets/img/cartes/carte_1.png">
-        <img class="carte" src="assets/img/cartes/carte_2.png">
-        <img class="carte" src="assets/img/cartes/carte_3.png">
-        <img class="carte" src="assets/img/cartes/carte_4.png">
-        <img class="carte" src="assets/img/cartes/carte_4.png">
-        <img class="carte" src="assets/img/cartes/carte_4.png">
-        <img class="carte" src="assets/img/cartes/carte_4.png">
+        <img class="carte" src="assets/img/cartes/1.png">
+        <img class="carte" src="assets/img/cartes/2.png">
+        <img class="carte" src="assets/img/cartes/3.png">
+        <img class="carte" src="assets/img/cartes/4.png">
+        <img class="carte" src="assets/img/cartes/4.png">
+        <img class="carte" src="assets/img/cartes/4.png">
+        <img class="carte" src="assets/img/cartes/4.png">
 
       </div>
     </div>
   </div>
   <ion-row id="premier_ligne">
-    <ion-col>
+    <ion-col *ngFor="let player of this.players, let i = index;"  >
       <ion-card class="joueur">
         <div class="entete">
           <ion-avatar>
-            <img src="assets/img/avatar.png">
+            <img src="{{playersDisplay[i].imageURL}}">
           </ion-avatar>
-          <ion-text class="pseudo"></ion-text>
+          <ion-text class="pseudo">{{playersDisplay[i].pseudo}}</ion-text>
+        </div>
+        <div class="body">
+          <div class="coffre">
+            <img class="img" src="assets/img/coffre.png">
+            <ion-text class="nb_coffre">{{player.nb_diamant_total}}</ion-text>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="diamant">
+            <img src="assets/img/diamant.png" class="diamant_img">
+            <ion-text class="nb_diamant">{{player.nb_diamant_manche}}</ion-text>
+          </div>
+          <img src="assets/img/mine.png" class="statut" *ngIf="player.etat == 'mine'">
+          <img src="assets/img/camp.png" class="statut" *ngIf="player.etat == 'camp'">
+        </div>
+      </ion-card>
+    </ion-col>
+
+    <ion-col  >
+      <ion-card class="joueur">
+        <div class="entete">
+          <ion-avatar>
+            <img src="">
+          </ion-avatar>
+          <ion-text class="pseudo">totoGaming</ion-text>
         </div>
         <div class="body">
           <div class="coffre">
@@ -46,57 +71,12 @@
         <div class="footer">
           <div class="diamant">
             <img src="assets/img/diamant.png" class="diamant_img">
-            <ion-text class="nb_diamant">15</ion-text>
+            <ion-text class="nb_diamant">23</ion-text>
           </div>
           <img src="assets/img/mine.png" class="statut">
         </div>
       </ion-card>
     </ion-col>
-    <ion-col>
-      <ion-card class="joueur">
-        <div class="entete">
-          <ion-avatar>
-            <img src="assets/img/avatar.png">
-          </ion-avatar>
-          <ion-text class="pseudo">TotoGamer</ion-text>
-        </div>
-        <div class="body">
-          <div class="coffre">
-            <img class="img" src="assets/img/coffre.png">
-            <ion-text class="nb_coffre">12</ion-text>
-          </div>
-        </div>
-        <div class="footer">
-          <div class="diamant">
-            <img src="assets/img/diamant.png" class="diamant_img">
-            <ion-text class="nb_diamant">15</ion-text>
-          </div>
-          <img src="assets/img/mine.png" class="statut">
-        </div>
-      </ion-card>
-    </ion-col><ion-col>
-    <ion-card class="joueur">
-      <div class="entete">
-        <ion-avatar>
-          <img src="assets/img/avatar.png">
-        </ion-avatar>
-        <ion-text class="pseudo">TotoGamer</ion-text>
-      </div>
-      <div class="body">
-        <div class="coffre">
-          <img class="img" src="assets/img/coffre.png">
-          <ion-text class="nb_coffre">12</ion-text>
-        </div>
-      </div>
-      <div class="footer">
-        <div class="diamant">
-          <img src="assets/img/diamant.png" class="diamant_img">
-          <ion-text class="nb_diamant">15</ion-text>
-        </div>
-        <img src="assets/img/mine.png" class="statut">
-      </div>
-    </ion-card>
-  </ion-col>
 
   </ion-row>
   <ion-row id="deuxieme_ligne">

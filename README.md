@@ -62,6 +62,13 @@ J'ai l'impression de ne pas avoir avancé beaucoup ce soir malgré le temps pass
 Eléments de jeu statique :
 ![Eléments de jeu statique](/images/partie.png)
 
+### 12/05/2020 (2h00)
+-Fin du binding pour la partie joueur : récupération des pseudos des joueurs dans la partie, de leurs images de profil et des données de jeu de chacun. (2h00)
+Illustration:
+![Eléments de jeu statique](/images/binding.gif)
+
+
+
 
 ## Modifications à faire
 - Ajout d'un message d'erreur sur la page de connexion (Mot de passe incorrect etc...)

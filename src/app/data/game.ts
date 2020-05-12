@@ -1,3 +1,6 @@
+import {storage} from 'firebase';
+import {AngularFireStorage} from '@angular/fire/storage';
+
 export class game {
     carte_en_cours: number = 0;
     cartes: number[] = [99, 98, 97];
@@ -7,7 +10,7 @@ export class game {
     nb_joueur_total: number = 0;
     playerEnAttente: string = '';
     playerEnJeu: any[];
-    players = new Map<string, player>();
+    players = new Array<player>();
 }
 
 export class player{
@@ -19,10 +22,18 @@ export class player{
 }
 
 export class playerDisplay{
-    constructor(pseudo:string,imageURL:string){
+    constructor(pseudo:string,imageFirebaseURL:string,public afSG : AngularFireStorage){
         this.pseudo = pseudo;
-        this.imageURL = imageURL;
+        this.imageFirebaseURL = imageFirebaseURL;
+        this.imageURL = '';
+        var storage = afSG.storage;
+        var pathReference = storage.ref(imageFirebaseURL);
+        pathReference.getDownloadURL().then(url => {
+            this.imageURL = url;
+        });
     }
+
     pseudo:string='test';
+    imageFirebaseURL:string='test';
     imageURL:string='test';
 }
