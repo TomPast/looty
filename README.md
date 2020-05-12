@@ -67,7 +67,7 @@ Eléments de jeu statique :
 ![Eléments de jeu statique](/images/partie.png)
 
 ### 12/05/2020 (2h00)
--Fin du binding pour la partie joueur : récupération des pseudos des joueurs dans la partie, de leurs images de profil et des données de jeu de chacun. + récupération des cartes (2h00)
+-Fin du binding pour la partie joueur : récupération des pseudos des joueurs dans la partie, de leurs images de profil et des données de jeu de chacun. + récupération des cartes (3h00)
 Illustration:
 ![Binding](/images/binding.gif)
 
