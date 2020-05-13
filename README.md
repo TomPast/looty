@@ -112,7 +112,7 @@ Difficultés :  - Toujours un peu de mal avec Firebase, dont la méthode pour ef
 
 ## Modifications à faire
 - Ajout d'un message d'erreur sur la page de connexion (Mot de passe incorrect etc...)
-- Remise en forme de la page inscription avec les deux boutons pour ajouter une image
+- FAIT Remise en forme de la page inscription avec les deux boutons pour ajouter une image
 - Page Recherche de partie : Ajout de la photo de profil à coté des pseudos
 
 ## Bug à corriger
