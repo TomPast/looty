@@ -17,7 +17,7 @@ export class player{
     etat:string= "mine";
     nb_diamant_manche:number= 0;
     nb_diamant_total:number= 0;
-    status:string= "jeu2";
+    status:string= "jeu";
 }
 
 export class playerDisplay{

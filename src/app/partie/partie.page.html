@@ -18,7 +18,7 @@
         <!--<span *ngFor="let item of items | async">{{item.ProjectEvent}}</span>-->
         <img class="carte" id="premiere_carte" src="assets/img/cartes/deck.png">
         <span *ngFor="let carte of this.GAME.cartes, let i = index;">
-          <img class="carte"  src="assets/img/cartes/{{carte}}.png" *ngIf="i<=GAME.carte_en_cours">
+          <img class="carte"  src="assets/img/cartes/{{carte}}.png" *ngIf="i<=GAME.carte_en_cours"> <!--On dévoile les cartes jusqu'à la carte en cours-->
         </span>
 
 
@@ -37,7 +37,7 @@
         <div class="body">
           <div class="coffre">
             <img class="img" src="assets/img/coffre.png">
-            <ion-text class="nb_coffre">{{player.nb_diamant_total}}</ion-text>
+            <ion-text class="nb_coffre" *ngIf="player.uid == currentuser.uid">{{player.nb_diamant_total}}</ion-text>
           </div>
         </div>
         <div class="footer">
@@ -136,10 +136,10 @@
   </ion-row>
   <ion-row>
     <ion-col class="test">
-      <ion-button  block>EXPLORER</ion-button>
+      <ion-button  block (click)="changeEtat('mine')" *ngIf="currentuser_game.status != 'attente'">EXPLORER</ion-button>
     </ion-col>
     <ion-col class="test">
-      <ion-button  block>RENTRER</ion-button>
+      <ion-button  block (click)="changeEtat('camp')" *ngIf="currentuser_game.status != 'attente'">RENTRER</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>

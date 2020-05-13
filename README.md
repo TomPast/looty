@@ -2,6 +2,31 @@
 
 Looty est un jeu développé par Tom Pastor dans le cadre du module Développement d'applications mobiles. Celui-ci reprend le principe du jeu [diamant](https://fr.wikipedia.org/wiki/Diamant_(jeu)).
 
+## Récapitulatif global du13/05
+### Où j'en suis actuellement  | Temps passé (environ 40h)
+Comme vous pourrez le voir dans la partie suivante [Avancement](##Avancement) voici la liste des taches réalisée jusqu'à maintenant: 
+* Création de toutes les pages de la maquette en statique
+* Gestion de la connexion et d'inscription en utilisant Firebase Authentification ainsi que Firebase Storage pour stocker l'image de profil
+* Récupération des informations de l'utilisateur une fois connecté pour les afficher sur son profil (DataBinding)
+* Création d'un système de salle d'attente basé sur la BDD Firebase Realtime Database (dès que la salle est pleine, on crée une partie)
+* Création de la partie avec distribution des cartes aléatoirement et initialisation des variables de jeu
+* DataBinding pour afficher les informations de jeu en temps réel sur l'écran de l'utilisateur
+* Création des fonctions de jeu suivantes à l'aide de Firebase Cloud Functions :
+    * Fonction onNewPlayer : Création d'une partie lorsque la salle d'attente est pleine
+    * Fonction onNewManche : Redistribution des cartes, réinitialisation du nombre de diamants etc... lorsque l'on démarre une nouvelle manche
+    * Fonction onFinTour :  Appel de onNewManche si tous les joueurs sont au camp | sinon s'il reste des joueurs en mine, on recommence un nouveau tour
+
+### Difficultés rencontrées
+* La prise en main de Firebase, le temps de comprendre les différents modules et comment les utiliser m'a pris beaucoup de temps. J'ai notamment eu et j'ai toujours du mal avec Firebase Realtime Database car il s'agit d'un arbre JSON et non d'une BDD SQL comme j'en avais l'habitude. J'ai tendance à toujours penser en SQL, donc des choses très simple en SQL sont parfois complexes avec la BDD firebase.
+* Le système de partie, il faut réfléchir en évènement dans mon arbre JSON. Exemple : Si la valeur de manche est incrémentée, alors il faut changer le Array cartes en remélangeant les cartes etc...
+* Difficultés pour trouver des ressources (Jeu + Firebase Realtime DB), peu d'éléments de théorie
+
+La combinaison de tout cela fait que l'avancement de mon projet prend plus de temps que ce que j'avais imaginé au départ. J'ai l'impression d'avancer lentement, mais j'apprends beaucoup de chose concernant firebase.
+
+### Ce qu'il me reste à faire | Temps estimé (environ 30h + 20% = 36h)
+* La fin de l'implémentation de l'algo (Distribution des diamants, gestion des pièges, gestion de fin de partie etc...) (20-25h)
+* Création d'un système de classement (par victoires, nombre de parties et de défaites) (5h)
+
 
 ## Avancement
 
@@ -53,7 +78,9 @@ Fonctions à rajouter :
 - A chaque fois que taille de player en attente == NUM_PLAYER ou que la taille de player en jeu == 0, alors fin du tour ->  on pick une carte (incremente carte_en_cours) + distribution des diamants à la fin du tour (encore en mine) + distribution des diamants restants répartis avec tous les joueurs
 - A chaque fois que update(carte_en_cours) -> On vérifie qu'on a pas deux pièges similaires qui sont sortis -> Fin de manche (mance: incremente(1))
 - A chaque fois que manche est update, vérifier que manche <= 5 sinon => fin de partie avec podium
+
 Structure BBD firebase pour la partie jeu :
+
 ![Structure BBD firebase pour la partie jeu](/images/arbre_game.png)
 
 ### Séances de TP 7/05/2020 et 11/05/2020: Redirection utilisateur + binding (Séances de TP : 6h00)
@@ -61,16 +88,25 @@ Redirection de l'utilisateur une fois que la partie a été créee (salle d'atte
 
 ### 11/05/2020 (4h00)
 Positionnement des éléments de jeu en statique + parse des données de la base de donnée dans un objet TypeScript.
-J'ai l'impression de ne pas avoir avancé beaucoup ce soir malgré le temps passé, j'ai rencontré pas mal de soucis un peu bête mais qui m'ont pris du temps à résoudre.
+J'ai l'impression de ne pas avoir avancé beaucoup ce soir malgré le temps passé, j'ai rencontré pas mal de soucis un peu bête mais qui m'ont pris du temps à résoudre pour regrouper les données.
 
 Eléments de jeu statique :
+
 ![Eléments de jeu statique](/images/partie.png)
 
-### 12/05/2020 (2h00)
+### 12/05/2020 (3h00)
 -Fin du binding pour la partie joueur : récupération des pseudos des joueurs dans la partie, de leurs images de profil et des données de jeu de chacun. + récupération des cartes (3h00)
+
 Illustration:
+
 ![Binding](/images/binding.gif)
 
+### 13/05/2020 : Actions utilisateur + nouvelle manche + fin de tour (6h00)
+-Ajout des actions utilisateurs (explorer la mine ou rentrer au camp) -> effectue les changements nécéssaires dans la BDD + cache les boutons quand les joueurs sont en attente
+-Modification de la fonction Cloud Firestore de nouvelle manche qui re mélange les cartes et stocke le nombre de diamant etc...
+-Ajout d'une fonction de fin de tour, si tous les joueurs sont au camp -> nouvelle manche sinon et si tous les joueurs sont en attente alors c'est un nouveau tour.
+
+Difficultés :  - Toujours un peu de mal avec Firebase, dont la méthode pour effectuer des choses très simples est parfois très compliqué (pour moi et avec mes connaissances actuellement)
 
 
 
