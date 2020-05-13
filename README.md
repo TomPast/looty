@@ -2,7 +2,7 @@
 
 Looty est un jeu développé par Tom Pastor dans le cadre du module Développement d'applications mobiles. Celui-ci reprend le principe du jeu [diamant](https://fr.wikipedia.org/wiki/Diamant_(jeu)).
 
-## Récapitulatif global du13/05
+## Récapitulatif global du 13/05
 ### Où j'en suis actuellement  | Temps passé (environ 40h)
 Comme vous pourrez le voir dans la partie suivante [Avancement](##Avancement) voici la liste des taches réalisée jusqu'à maintenant: 
 * Création de toutes les pages de la maquette en statique
