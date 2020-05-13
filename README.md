@@ -3,7 +3,7 @@
 Looty est un jeu développé par Tom Pastor dans le cadre du module Développement d'applications mobiles. Celui-ci reprend le principe du jeu [diamant](https://fr.wikipedia.org/wiki/Diamant_(jeu)).
 
 ## Récapitulatif global du 13/05
-### Où j'en suis actuellement  | Temps passé (environ 40h)
+### Où j'en suis actuellement  | Temps passé (environ 50h)
 Comme vous pourrez le voir dans la partie suivante [Avancement](##Avancement) voici la liste des taches réalisée jusqu'à maintenant: 
 * Création de toutes les pages de la maquette en statique
 * Gestion de la connexion et d'inscription en utilisant Firebase Authentification ainsi que Firebase Storage pour stocker l'image de profil
@@ -20,12 +20,14 @@ Comme vous pourrez le voir dans la partie suivante [Avancement](##Avancement) vo
 * La prise en main de Firebase, le temps de comprendre les différents modules et comment les utiliser m'a pris beaucoup de temps. J'ai notamment eu et j'ai toujours du mal avec Firebase Realtime Database car il s'agit d'un arbre JSON et non d'une BDD SQL comme j'en avais l'habitude. J'ai tendance à toujours penser en SQL, donc des choses très simple en SQL sont parfois complexes avec la BDD firebase.
 * Le système de partie, il faut réfléchir en évènement dans mon arbre JSON. Exemple : Si la valeur de manche est incrémentée, alors il faut changer le Array cartes en remélangeant les cartes etc...
 * Difficultés pour trouver des ressources (Jeu + Firebase Realtime DB), peu d'éléments de théorie
+* Tester ce que je code est assez long, je dois relancer à chaque fois en réinitialisant ma base de données. Idem pour les cloud functions, il faut deployer les fonctions ce qui prend du temps avant de pouvoir les tester.
+* Parfois les cloud functions mettent du temps à se déclencher/exécuter la première fois (il faut que je regarde d'où cela provient)
 
-La combinaison de tout cela fait que l'avancement de mon projet prend plus de temps que ce que j'avais imaginé au départ. J'ai l'impression d'avancer lentement, mais j'apprends beaucoup de chose concernant firebase.
+La combinaison de tout cela fait que l'avancement de mon projet prend plus de temps que ce que j'avais imaginé au départ. J'ai l'impression d'avancer très lentement, mais j'apprends beaucoup de chose concernant firebase. J'ai aussi l'impression de ne pas faire du code "propre".
 
-### Ce qu'il me reste à faire | Temps estimé (environ 30h + 20% = 36h)
-* La fin de l'implémentation de l'algo (Distribution des diamants, gestion des pièges, gestion de fin de partie etc...) (20-25h)
-* Création d'un système de classement (par victoires, nombre de parties et de défaites) (5h)
+### Ce qu'il me reste à faire | Temps estimé (environ 40h)
+* La fin de l'implémentation de l'algo (Distribution des diamants, gestion des pièges, gestion de fin de partie etc...)
+* Création d'un système de classement (par victoires, nombre de parties et de défaites)
 
 
 ## Avancement
@@ -41,7 +43,7 @@ Cependant j'avais aussi besoin d'un pseudonyme et d'une photo de profil. J'ai do
 
 Beaucoup de difficultés + beaucoup de réflexion (comment agencer les modules entre eux), première prise en main du TypeScript...
 
-### 15/04/2020 : Mon Compte (1h30)
+### 15/04/2020 : Mon Compte (3h00)
 - Récupération des informations de l'utilisateur connecté : pseudo, mail, nombre de parties jouées, gagnées ainsi que la photo de profil
 - Remplissage dynamique de la page avec ces informations
 
@@ -51,7 +53,7 @@ Difficultés : Récupération de la photo de profil à partir de l'URL de l'imag
 - Retravailler le logo
 - Créer le design des cartes de diamant, piège et trésor.
 
-### 17/04/2020 : Système d'attente d'avant partie (5h00)
+### 17/04/2020 : Système d'attente d'avant partie (5h30)
 Je n'avais pas pensé à ça lors de la création de ma maquette. J'ai donc du réfléchir à un système de salle d'attente où les joueurs patientent jusqu'à être 5 et commencer une partie.
 On a donc une page qui s'auto-actualise avec les pseudo des joueurs en attente.
 Pour cela, dès qu'un joueur passe en attente, on crée une entrée sur la BDD du style : waitingRoom/UserID .
@@ -62,7 +64,7 @@ Cela reste encore très flou, et il y a peu de ressources sur internet expliquan
 
 Difficultés : Prise en main de FireBase Realtime Database (Format de la BDD n'est pas SQL mais un unique arbre JSON) + detection de changement pour actualiser la liste des joueurs en attente en temps réel (changeRef.detectChanges()) + format des requetes 
 
-### 18/04/2020 : Création d'une partie (5h00)
+### 18/04/2020 : Création d'une partie (6h00)
 Utilisation de FireBase Cloud Functions permettant d'executer des fonctions depuis le backend à partir de trigger provenant de la base de donnée en temps réel. J'ai pour l'instant crée deux fonctions :
 - Fonction qui s'exécute à chaque fois qu'un joueur passe en attente d'une partie
 A chaque fois, on vérifie si on a atteint le nombre minimum de joueurs requis. Si c'est le cas, on supprime ces joueurs de la salle d'attente, on crée une partie qui aura pour nom la concaténation de tous les UID des joueurs présents dans la partie et on initialise toutes les valeurs utiles pour la parties.
@@ -94,14 +96,14 @@ Eléments de jeu statique :
 
 ![Eléments de jeu statique](/images/partie.png)
 
-### 12/05/2020 (3h00)
--Fin du binding pour la partie joueur : récupération des pseudos des joueurs dans la partie, de leurs images de profil et des données de jeu de chacun. + récupération des cartes (3h00)
+### 12/05/2020 (4h00)
+-Fin du binding pour la partie joueur : récupération des pseudos des joueurs dans la partie, de leurs images de profil et des données de jeu de chacun. + récupération des cartes
 
 Illustration:
 
 ![Binding](/images/binding.gif)
 
-### 13/05/2020 : Actions utilisateur + nouvelle manche + fin de tour (6h00)
+### 13/05/2020 : Actions utilisateur + nouvelle manche + fin de tour (6h30)
 -Ajout des actions utilisateurs (explorer la mine ou rentrer au camp) -> effectue les changements nécéssaires dans la BDD + cache les boutons quand les joueurs sont en attente
 -Modification de la fonction Cloud Firestore de nouvelle manche qui re mélange les cartes et stocke le nombre de diamant etc...
 -Ajout d'une fonction de fin de tour, si tous les joueurs sont au camp -> nouvelle manche sinon et si tous les joueurs sont en attente alors c'est un nouveau tour.
