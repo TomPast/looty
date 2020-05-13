@@ -23,11 +23,13 @@ Comme vous pourrez le voir dans la partie suivante [Avancement](##Avancement) vo
 * Tester ce que je code est assez long, je dois relancer à chaque fois en réinitialisant ma base de données. Idem pour les cloud functions, il faut deployer les fonctions ce qui prend du temps avant de pouvoir les tester.
 * Parfois les cloud functions mettent du temps à se déclencher/exécuter la première fois (il faut que je regarde d'où cela provient)
 
-La combinaison de tout cela fait que l'avancement de mon projet prend plus de temps que ce que j'avais imaginé au départ. J'ai l'impression d'avancer très lentement, mais j'apprends beaucoup de chose concernant firebase. J'ai aussi l'impression de ne pas faire du code "propre".
+La combinaison de tout cela fait que l'avancement de mon projet prend plus de temps que ce que j'avais imaginé au départ. J'ai l'impression d'avancer très lentement, mais j'apprends beaucoup de chose concernant firebase. Je me remet souvent en question aussi, car je suis sûr qu'il y a une meilleure méthode pour faire ce que j'essaye de faire.
 
-### Ce qu'il me reste à faire | Temps estimé (environ 40h)
-* La fin de l'implémentation de l'algo (Distribution des diamants, gestion des pièges, gestion de fin de partie etc...)
-* Création d'un système de classement (par victoires, nombre de parties et de défaites)
+### Ce qu'il me reste à faire | Temps estimé (environ 50-55h)
+* La fin de l'implémentation de l'algo de jeu (Distribution des diamants aux joueurs en mine et repartition des diamants restants entre les joueurs dans le camp, gestion des pièges, gestion de fin de partie etc...)
+* Revoir la structure pour stocker le nombre de diamant correspondant à la valeur de la carte et faire les modifications nécéssaires
+* Création du système de podium à la fin de la partie
+* Création du système de classement global (par victoires, nombre de parties et de défaites)
 
 
 ## Avancement
