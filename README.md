@@ -1,10 +1,10 @@
 # Looty
 
-Looty est un jeu développé par Tom Pastor dans le cadre du module Développement d'applications mobiles. Celui-ci reprend le principe du jeu [diamant](https://fr.wikipedia.org/wiki/Diamant_(jeu)).
+Looty est un jeu développé par Tom Pastor dans le cadre du module Développement d'applications mobiles. Celui-ci reprend le principe du jeu [diamant](https://fr.wikipedia.org/wiki/Diamant_(jeu)) et repose sur Firebase (Authentification, Storage, Realtime DB, et Cloud Functions)
 
 ## Récapitulatif global du 13/05
 ### Où j'en suis actuellement  | Temps passé (environ 50h)
-Comme vous pourrez le voir dans la partie suivante [Avancement](##Avancement) voici la liste des taches réalisée jusqu'à maintenant: 
+Comme vous pourrez le voir dans la partie suivante [Avancement](##Avancement) voici la liste des taches réalisées jusqu'à maintenant: 
 * Création de toutes les pages de la maquette en statique
 * Gestion de la connexion et d'inscription en utilisant Firebase Authentification ainsi que Firebase Storage pour stocker l'image de profil
 * Récupération des informations de l'utilisateur une fois connecté pour les afficher sur son profil (DataBinding)
