@@ -30,10 +30,6 @@ export class PartiePage implements OnInit {
   }
 
   ionViewWillEnter(){
-
-  }
-
-  ngOnInit() {
     this.GAMEID = this.route.snapshot.params['GAMEID'];
     this.getPlayersNameAndPicture(); //Récupération des pseudos et des images des joueurs dans la partie
     console.dir(this.playersDisplay);
@@ -46,8 +42,11 @@ export class PartiePage implements OnInit {
     this.afDB.database.ref('/games/').child(this.GAMEID).on("value", (snapshot, prevChildKey) => { // Récupération de toutes les données de jeu
       this.GAME = snapshot.val();
       this.currentuser_game = this.GAME.players.find(data => data.uid == this.currentuser.uid);
-      console.dir(this.currentuser_game);
     });
+  }
+
+  ngOnInit() {
+
   }
 
   getPlayersNameAndPicture(){
@@ -68,7 +67,7 @@ export class PartiePage implements OnInit {
         game.playerEnAttente++;
         return game;
       });
-    }else if(etatParam == "camp"){
+    }else if(etatParam == "rentre"){
       this.afDB.database.ref("/games").child(this.GAMEID).transaction(function(game) {
         game.nb_joueurs_camp++;
         game.nb_joueurs_mine--;

@@ -12,7 +12,7 @@
 
 <ion-content>
   <div id="cartes">
-    <h5>Manche {{this.GAME.manche}}/5</h5>
+    <h5>Manche {{this.GAME.manche}}/5 | {{this.GAME.nb_diamant_attente}} diamants en attente</h5>
     <div class="container">
       <div class="scroll" scrollX="true">
         <!--<span *ngFor="let item of items | async">{{item.ProjectEvent}}</span>-->
@@ -20,8 +20,6 @@
         <span *ngFor="let carte of this.GAME.cartes, let i = index;">
           <img class="carte"  src="assets/img/cartes/{{carte}}.png" *ngIf="i<=GAME.carte_en_cours"> <!--On dévoile les cartes jusqu'à la carte en cours-->
         </span>
-
-
       </div>
     </div>
   </div>
@@ -139,7 +137,7 @@
       <ion-button  block (click)="changeEtat('mine')" *ngIf="currentuser_game.status != 'attente'">EXPLORER</ion-button>
     </ion-col>
     <ion-col class="test">
-      <ion-button  block (click)="changeEtat('camp')" *ngIf="currentuser_game.status != 'attente'">RENTRER</ion-button>
+      <ion-button  block (click)="changeEtat('rentre')" *ngIf="currentuser_game.status != 'attente'">RENTRER</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>

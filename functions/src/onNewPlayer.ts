@@ -42,7 +42,7 @@ exports.onNewPlayer = functions
                         partie_en_cours: GameId
                     })
                 });
-                let foo = Array.from(Array(30).keys());
+                let foo : Array<number> = [1,1,2,2,3,3,4,5,5,7,9,9,11,11,13,14,14,15,17,20,20,20,21,21,21,22,22,22,23,23,23,24,24,24];
                 foo = melange(foo);
                 admin.database().ref("/games").child(GameId).update({//On crée une partie avec les joueurs dedans
                     cartes : foo,
@@ -51,6 +51,7 @@ exports.onNewPlayer = functions
                     playerEnAttente : 0,
                     nb_joueurs_total : numChildren,
                     nb_joueurs_mine : numChildren,
+                    nb_diamant_attente : 0,
                     nb_joueurs_camp : 0
                 }).then((value)=>{return null;});
             }

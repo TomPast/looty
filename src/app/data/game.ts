@@ -8,6 +8,7 @@ export class game {
     nb_joueur_camp: number = 0;
     nb_joueur_mine: number = 0;
     nb_joueur_total: number = 0;
+    nb_diamant_attente : number = 0;
     playerEnAttente: number = 0;
     players = new Array<player>();
 }
