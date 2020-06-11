@@ -94,6 +94,7 @@ export class InscriptionPage implements OnInit {
       profile_picture : imageUrl,
       nb_parties : 0,
       nb_victoires : 0,
+      nb_defaites : 0,
       partie_en_cours: ''
     });
 

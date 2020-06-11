@@ -4,7 +4,7 @@ Looty est un jeu développé par Tom Pastor dans le cadre du module Développeme
 
 ## Récapitulatif global du 13/05
 ### Où j'en suis actuellement  | Temps passé (environ 50h)
-Comme vous pourrez le voir dans la partie suivante [Avancement](##Avancement) voici la liste des taches réalisées jusqu'à maintenant: 
+Comme vous pourrez le voir dans la partie suivante [Avancement](#Avancement) voici la liste des taches réalisées jusqu'à maintenant: 
 * Création de toutes les pages de la maquette en statique
 * Gestion de la connexion et d'inscription en utilisant Firebase Authentification ainsi que Firebase Storage pour stocker l'image de profil
 * Récupération des informations de l'utilisateur une fois connecté pour les afficher sur son profil (DataBinding)
@@ -112,7 +112,12 @@ Illustration:
 
 Difficultés :  - Toujours un peu de mal avec Firebase, dont la méthode pour effectuer des choses très simples est parfois très compliqué (pour moi et avec mes connaissances actuellement)
 
-
+### 21/05/2020 et 25/05/2020 : Création de fonctions pour le jeu (6h00)
+J'ai changé l'architecture de ma base de données firebase, j'ai ajouté un nouvel état ('rentre') pour pouvoir voir quel joueur vient de rentrer.
+J'ai aussi ajouté un champ qui contient le nombre de diamant en attente (pour les joueurs qui vont rentrer de la mine)
+Fonction de distribution des diamants aux joueurs qui rentrent de la mine (le nombre de diamant total est divisé par le nombre de joueurs qui viennent de rentrer)
+Fonction de distribution des diamants aux joueurs encore en mine, à chaque nouvelle carte (idem)
+Fonction de détection des pièges (si deux pièges pareils alors fin de la manche)
 
 ## Modifications à faire
 - Ajout d'un message d'erreur sur la page de connexion (Mot de passe incorrect etc...)

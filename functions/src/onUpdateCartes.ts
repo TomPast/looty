@@ -44,6 +44,13 @@ exports.onUpdateCartes = functions
 
                     getDuplicateArrayElements(data.val(),carte_en_cours).forEach(element => {
                         if(element >= 20){ // FIN MANCHE
+                            admin.database().ref('/games/' + context.params.gameID + '/players').orderByChild('etat').equalTo('mine').once('value').then((snapshot) => {
+                                snapshot.forEach((childSnapshot) => {
+                                    childSnapshot.ref.update({
+                                        nb_diamant_manche: 0
+                                    });
+                                });
+                            })
                             console.log('2 pieges pareil'+element);
                             admin.database().ref("/games").child(context.params.gameID).update({
                                 manche: increment(1)

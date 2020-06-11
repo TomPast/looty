@@ -53,7 +53,6 @@ export class PartiePage implements OnInit {
     this.afDB.database.ref("/games/").child(this.GAMEID).child('players').once("value", (parentSnapshot, prevChildKey) => {
       parentSnapshot.forEach((childSnapshot)=> {
         this.afDB.database.ref("/users/").child(childSnapshot.val().uid).once("value", (snapshot, prevChildKey2) => {
-          console.log("good");
           let playerD = new playerDisplay(childSnapshot.val().uid,snapshot.val().pseudo, snapshot.val().profile_picture, this.afSG);
           this.playersDisplay.push(playerD);
         });
