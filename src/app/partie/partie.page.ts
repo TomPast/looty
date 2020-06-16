@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {game, player, playerDisplay} from '../data/game';
 import {AngularFireStorage} from '@angular/fire/storage';
@@ -25,7 +25,7 @@ export class PartiePage implements OnInit {
   index:number = 0;
   playersDisplay= new Array<playerDisplay>();
 
-  constructor(private route: ActivatedRoute,private afDB : AngularFireDatabase, private afSG : AngularFireStorage,private afAuth: AngularFireAuth) {
+  constructor(private route: ActivatedRoute,private afDB : AngularFireDatabase, private afSG : AngularFireStorage,private afAuth: AngularFireAuth,public router: Router) {
     this.GAME = new game();
   }
 
@@ -43,6 +43,7 @@ export class PartiePage implements OnInit {
       this.GAME = snapshot.val();
       this.currentuser_game = this.GAME.players.find(data => data.uid == this.currentuser.uid);
     });
+    this.finPartie();
   }
 
   ngOnInit() {
@@ -87,4 +88,11 @@ export class PartiePage implements OnInit {
       });
     })
   }
+
+  finPartie(){
+    this.afDB.database.ref("users/").child(this.currentuser.uid).child("partie_en_cours").equalTo("tet").on("value",(snapshot, prevChildKey)=>{
+      this.router.navigateByUrl('/classement');
+    });
+  }
+
 }

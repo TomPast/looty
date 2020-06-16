@@ -112,17 +112,29 @@ Illustration:
 
 Difficultés :  - Toujours un peu de mal avec Firebase, dont la méthode pour effectuer des choses très simples est parfois très compliqué (pour moi et avec mes connaissances actuellement)
 
-### 21/05/2020 et 25/05/2020 : Création de fonctions pour le jeu (6h00)
+### 21/05/2020 et 25/05/2020 : Création de fonctions pour le jeu (8h00)
 J'ai changé l'architecture de ma base de données firebase, j'ai ajouté un nouvel état ('rentre') pour pouvoir voir quel joueur vient de rentrer.
 J'ai aussi ajouté un champ qui contient le nombre de diamant en attente (pour les joueurs qui vont rentrer de la mine)
 Fonction de distribution des diamants aux joueurs qui rentrent de la mine (le nombre de diamant total est divisé par le nombre de joueurs qui viennent de rentrer)
 Fonction de distribution des diamants aux joueurs encore en mine, à chaque nouvelle carte (idem)
 Fonction de détection des pièges (si deux pièges pareils alors fin de la manche)
 
+### 29/05/2020 : Finalisation des fonctions de jeu (4h00)
+Finalisation de toutes les fonctions de jeu. Toujours un peu de latence pour le déclenchement des fonctions.
+
+### 11/06/2020 : Gestion du classement (1h30)
+Récupération et affichage du classement avec les défaites, victoires et nombre de parties jouées. 
+
+### 16/06/2020 : Fonction de fin de partie (2h30)
+Fonction qui à la fin de la partie (manche > 5), incrémente le nombre de victoire, de défaite et le nombre de parties de chaque joueur en fonction de son classement dans la partie.
+Redirection automatique des joueurs à la fin de la partie + suppression des données de jeu.
+
+
 ## Modifications à faire
 - Ajout d'un message d'erreur sur la page de connexion (Mot de passe incorrect etc...)
 - FAIT Remise en forme de la page inscription avec les deux boutons pour ajouter une image
 - Page Recherche de partie : Ajout de la photo de profil à coté des pseudos
+- Ajouter podium de fin de partie
 
 ## Bug à corriger
 - Page de recherche de partie : Lorsque le dernier joueur en attente quitte l'attente, les autres joueurs le voient encore en attente s'il reste sur la page sans faire d'action.

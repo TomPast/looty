@@ -13,6 +13,7 @@ import {AngularFireStorage} from "@angular/fire/storage";
 
 
 export class ClassementDefaitesPage implements OnInit {
+
   classementDefaite: entry[] = [];
 
   constructor(private afDB : AngularFireDatabase, private afSG : AngularFireStorage) { }
