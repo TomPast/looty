@@ -129,7 +129,7 @@ Récupération et affichage du classement avec les défaites, victoires et nombr
 Fonction qui à la fin de la partie (manche > 5), incrémente le nombre de victoire, de défaite et le nombre de parties de chaque joueur en fonction de son classement dans la partie.
 Redirection automatique des joueurs à la fin de la partie + suppression des données de jeu.
 
-### 18/06/2020 : Génération de l'APK + modifications (2h30)
+### 18/06/2020 : Génération de l'APK + modifications (1h30)
 Ajout de l'image de profil sur le sidemenu + correction d'un problème lors de la redirection à la fin du partie
 
 ## Modifications à faire
