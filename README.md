@@ -131,6 +131,7 @@ Redirection automatique des joueurs à la fin de la partie + suppression des don
 
 ### 18/06/2020 : Génération de l'APK + modifications (1h30)
 Ajout de l'image de profil sur le sidemenu + correction d'un problème lors de la redirection à la fin du partie
+Ajouter page mon compte récupération des info de partie
 
 ## Modifications à faire
 - Ajout d'un message d'erreur sur la page de connexion (Mot de passe incorrect etc...)
