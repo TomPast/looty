@@ -25,7 +25,7 @@ Comme vous pourrez le voir dans la partie suivante [Avancement](#Avancement) voi
 
 La combinaison de tout cela fait que l'avancement de mon projet prend plus de temps que ce que j'avais imaginé au départ. J'ai l'impression d'avancer très lentement, mais j'apprends beaucoup de chose concernant firebase. Je me remet souvent en question aussi, car je suis sûr qu'il y a une meilleure méthode pour faire ce que j'essaye de faire. C'est la première fois que passe autant de temps sur un projet tout seul et en ayant autant de difficultés, c'est donc un peu déroutant certaines fois.
 
-### Ce qu'il me reste à faire | Temps estimé (environ 50-55h)
+### Ce qu'il me reste à faire | Temps estimé (environ 20-25h)
 * La fin de l'implémentation de l'algo de jeu (Distribution des diamants aux joueurs en mine et repartition des diamants restants entre les joueurs dans le camp, gestion des pièges, gestion de fin de partie etc...)
 * Revoir la structure pour stocker le nombre de diamant correspondant à la valeur de la carte et faire les modifications nécéssaires
 * Création du système de podium à la fin de la partie
