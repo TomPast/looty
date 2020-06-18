@@ -8,7 +8,7 @@ exports.onUpdateCartes = functions
     .region('europe-west1')
     .database
     .ref('/games/{gameID}/carte_en_cours')
-    .onWrite((snapshot, context) => {
+    .onUpdate((snapshot, context) => {
         console.log('update carte');
         let carte_en_cours = snapshot.after.val();
         let val_carte = 0;

@@ -37,6 +37,7 @@ exports.onNewManche = functions
                 });
             }).then(()=>{
                 admin.database().ref('games/' + context.params.gameID).remove();
+                admin.database().ref('games/' + context.params.gameID).remove();
             });
         }
         else{

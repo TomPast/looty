@@ -52,8 +52,6 @@ export class MonComptePage implements OnInit {
           this.dataUser.img = "assets/img/avatar.png"; //Si erreur on affiche l'avatar de base
           this.loaded = true;
         });
-      } else {
-        // No user is signed in.
       }
     });
   }

@@ -38,7 +38,16 @@ export class PartiePage implements OnInit {
         this.currentuser.uid = user.uid;
         this.currentuser.pseudo = user.displayName;
       }
+    }).then(()=>{
+      console.log("UID : "+this.currentuser.uid);
+      this.afDB.database.ref("users/").child(this.currentuser.uid).child("partie_en_cours").on("value",(snapshot, prevChildKey)=>{
+        console.log("OKIII");
+        if(snapshot.val()== ''){
+          this.router.navigateByUrl('/classement');
+        }
+      });
     });
+
     this.afDB.database.ref('/games/').child(this.GAMEID).on("value", (snapshot, prevChildKey) => { // Récupération de toutes les données de jeu
       this.GAME = snapshot.val();
       this.currentuser_game = this.GAME.players.find(data => data.uid == this.currentuser.uid);
@@ -90,9 +99,7 @@ export class PartiePage implements OnInit {
   }
 
   finPartie(){
-    this.afDB.database.ref("users/").child(this.currentuser.uid).child("partie_en_cours").equalTo("tet").on("value",(snapshot, prevChildKey)=>{
-      this.router.navigateByUrl('/classement');
-    });
+
   }
 
 }
