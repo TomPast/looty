@@ -79,4 +79,12 @@
       </ion-card>
     </ion-col>
   </ion-row>
+  <ion-row>
+    <ion-col class="test">
+      <ion-button  block (click)="changeEtat('mine')" *ngIf="currentuser_game.status != 'attente'">EXPLORER</ion-button>
+    </ion-col>
+    <ion-col class="test">
+      <ion-button  block (click)="changeEtat('rentre')" *ngIf="currentuser_game.status != 'attente'">RENTRER</ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>

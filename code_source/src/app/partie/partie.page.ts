@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {game, player, playerDisplay} from '../data/game';
@@ -25,13 +25,15 @@ export class PartiePage implements OnInit {
   index:number = 0;
   playersDisplay= new Array<playerDisplay>();
 
-  constructor(private route: ActivatedRoute,private afDB : AngularFireDatabase, private afSG : AngularFireStorage,private afAuth: AngularFireAuth,public router: Router) {
+  constructor(private route: ActivatedRoute,private afDB : AngularFireDatabase, private afSG : AngularFireStorage,private afAuth: AngularFireAuth,public router: Router,private changeRef: ChangeDetectorRef) {
     this.GAME = new game();
   }
 
   ionViewWillEnter(){
     this.GAMEID = this.route.snapshot.params['GAMEID'];
-    this.getPlayersNameAndPicture(); //Récupération des pseudos et des images des joueurs dans la partie
+    this.getPlayersNameAndPicture().then(()=>{
+
+    }); //Récupération des pseudos et des images des joueurs dans la partie
     console.dir(this.playersDisplay);
     this.afAuth.onAuthStateChanged(user => { //Récupération de l'UID et du pseudo du joueur connecté sur l'appareil
       if (user) {
@@ -51,6 +53,7 @@ export class PartiePage implements OnInit {
     this.afDB.database.ref('/games/').child(this.GAMEID).on("value", (snapshot, prevChildKey) => { // Récupération de toutes les données de jeu
       this.GAME = snapshot.val();
       this.currentuser_game = this.GAME.players.find(data => data.uid == this.currentuser.uid);
+      this.changeRef.detectChanges();
     });
   }
 
@@ -60,11 +63,12 @@ export class PartiePage implements OnInit {
 
   //Récupération des noms de joueurs et des images de profil
   getPlayersNameAndPicture(){
-    this.afDB.database.ref("/games/").child(this.GAMEID).child('players').once("value", (parentSnapshot, prevChildKey) => {
+    return this.afDB.database.ref("/games/").child(this.GAMEID).child('players').once("value", (parentSnapshot, prevChildKey) => {
       parentSnapshot.forEach((childSnapshot)=> {
         this.afDB.database.ref("/users/").child(childSnapshot.val().uid).once("value", (snapshot, prevChildKey2) => {
           let playerD = new playerDisplay(childSnapshot.val().uid,snapshot.val().pseudo, snapshot.val().profile_picture, this.afSG);
           this.playersDisplay.push(playerD);
+          this.changeRef.detectChanges();
         });
       });
     });
