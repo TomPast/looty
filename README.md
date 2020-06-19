@@ -2,6 +2,36 @@
 
 Looty est un jeu développé par Tom Pastor dans le cadre du module Développement d'applications mobiles. Celui-ci reprend le principe du jeu [diamant](https://fr.wikipedia.org/wiki/Diamant_(jeu)) et repose sur Firebase (Authentification, Storage, Realtime DB, et Cloud Functions)
 
+##Synthèse finale (19/06/2020)
+### Synthèse Globale
+Durant ce projet, j'ai essayé de noter à chaque fois que je travaillais sur le projet lors de la phase de développement. Cela m'a permis de noter au fur et à mesure les problèmes que j'ai pu rencontrer.
+J'ai dû passer environ 70h sur ce projet à partir de la phase de développement. J'ai beaucoup appris car c'était la première fois que je créais une application sous Ionic.
+J'ai aussi pu découvrir Firebase (Base de données en temps réel, Storage, Authentification, Cloud Functions) qui me parait très puissant.
+
+### Difficultés rencontrées 
+* La prise en main de Firebase, le temps de comprendre les différents modules et comment les utiliser m'a pris beaucoup de temps. J'ai notamment eu et j'ai toujours du mal avec Firebase Realtime Database car il s'agit d'un arbre JSON et non d'une BDD SQL comme j'en avais l'habitude. J'ai tendance à toujours penser en SQL, donc des choses très simple en SQL sont parfois complexes avec la BDD firebase.
+* Le système de partie, il faut réfléchir en évènement dans mon arbre JSON avec les firebase Cloud Functions.
+* Difficultés pour trouver des ressources (Jeu + Firebase Realtime DB + Ionic), peu d'éléments de théorie
+* Tester ce que je code est assez long, je dois relancer à chaque fois en réinitialisant ma base de données. Idem pour les cloud functions, il faut deployer les fonctions ce qui prend du temps avant de pouvoir les tester.
+* Parfois les cloud functions mettent du temps à se déclencher/exécuter, je ne comprends pas vraiment d'où cela vient étant donné que le temps d'éxécution des fonctions est raisonnable.
+
+### Ce que j'ai pu réaliser
+* Création de toutes les pages de la maquette en statique
+* Gestion de la connexion et d'inscription en utilisant Firebase Authentification ainsi que Firebase Storage pour stocker l'image de profil
+* Récupération des informations de l'utilisateur une fois connecté pour les afficher sur son profil (DataBinding)
+* Création d'un système de salle d'attente basé sur la BDD Firebase Realtime Database (dès que la salle est pleine, on crée une partie)
+* Création de la partie avec distribution des cartes aléatoirement et initialisation des variables de jeu
+* DataBinding pour afficher les informations de jeu en temps réel sur l'écran de l'utilisateur
+* Création des fonctions de jeu suivantes à l'aide de Firebase Cloud Functions :
+    * Fonction onNewPlayer : Création d'une partie lorsque la salle d'attente est pleine
+    * Fonction onNewManche : Redistribution des cartes, réinitialisation du nombre de diamants etc... lorsque l'on démarre une nouvelle manche
+    * Fonction onFinTour :  Appel de onNewManche si tous les joueurs sont au camp | sinon s'il reste des joueurs en mine, on recommence un nouveau tour
+    * Fonction onUpdateCartes : Distribution des diamants à chaque fois qu'une carte est dévoilée + détection des pièges
+* Le jeu est fonctionnel, seul problème le temps de déclenchement des Cloud Functions est variable et parfois long (10-15 secondes)
+* A la fin de la partie, les statistiques des joueurs (victoires, défaites, nb parties) sont actualisées en fonction de leur classement.
+* Affichage du classement par nombre de défaites, victoires ou du nombre de parties
+
+
 ## Récapitulatif global du 13/05
 ### Où j'en suis actuellement  | Temps passé (environ 50h)
 Comme vous pourrez le voir dans la partie suivante [Avancement](#Avancement) voici la liste des taches réalisées jusqu'à maintenant: 
@@ -112,15 +142,16 @@ Illustration:
 
 Difficultés :  - Toujours un peu de mal avec Firebase, dont la méthode pour effectuer des choses très simples est parfois très compliqué (pour moi et avec mes connaissances actuellement)
 
-### 21/05/2020 et 25/05/2020 : Création de fonctions pour le jeu (8h00)
+### 21/05/2020 et 25/05/2020 : Création de fonctions pour le jeu (10h00)
 J'ai changé l'architecture de ma base de données firebase, j'ai ajouté un nouvel état ('rentre') pour pouvoir voir quel joueur vient de rentrer.
+Réflexion au niveau de l'algorithme du jeu
 J'ai aussi ajouté un champ qui contient le nombre de diamant en attente (pour les joueurs qui vont rentrer de la mine)
 Fonction de distribution des diamants aux joueurs qui rentrent de la mine (le nombre de diamant total est divisé par le nombre de joueurs qui viennent de rentrer)
 Fonction de distribution des diamants aux joueurs encore en mine, à chaque nouvelle carte (idem)
 Fonction de détection des pièges (si deux pièges pareils alors fin de la manche)
 
 ### 29/05/2020 : Finalisation des fonctions de jeu (4h00)
-Finalisation de toutes les fonctions de jeu. Toujours un peu de latence pour le déclenchement des fonctions.
+Finalisation de toutes les fonctions de jeu. Toujours un peu de latence pour le déclenchement des fonctions. Réflexion au niveau de l'algorithme du jeu
 
 ### 11/06/2020 : Gestion du classement (1h30)
 Récupération et affichage du classement avec les défaites, victoires et nombre de parties jouées. 
@@ -133,8 +164,14 @@ Redirection automatique des joueurs à la fin de la partie + suppression des don
 Ajout de l'image de profil sur le sidemenu + correction d'un problème lors de la redirection à la fin du partie
 Ajouter page mon compte récupération des info de partie
 
+### 19/06/2020 : Génération de l'APK + modifications (1h30)
+Ajout de commentaires dans le code
+Ajout du logo de looty et du splashscreen
+Recherche du souci pour la latence dans le déclenchement des firebase functions
+Re-génération de l'APK
+
 ## Modifications à faire
-- Ajout d'un message d'erreur sur la page de connexion (Mot de passe incorrect etc...)
+- FAIT Ajout d'un message d'erreur sur la page de connexion (Mot de passe incorrect etc...)
 - FAIT Remise en forme de la page inscription avec les deux boutons pour ajouter une image
 - Page Recherche de partie : Ajout de la photo de profil à coté des pseudos
 - Ajouter podium de fin de partie

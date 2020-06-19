@@ -23,6 +23,7 @@ export class ConnexionPage implements OnInit {
     password: ''
   };
 
+  // Fonction de connexion (vérification de l'email et du password)
   login() {
     this.afAuth.signInWithEmailAndPassword(this.dataUser.email, this.dataUser.password)
     .then(() => {
@@ -31,8 +32,9 @@ export class ConnexionPage implements OnInit {
         email: '',
         password: ''
       };
-      this.router.navigateByUrl('/mon-compte');
+      this.router.navigateByUrl('/mon-compte'); // Redirection vers la page mon compte
     }).catch(err => {
+      this.loginError();
       console.log('Erreur: ' + err);
     });
   }
@@ -42,6 +44,7 @@ export class ConnexionPage implements OnInit {
   ngOnInit() {
   }
 
+  // Erreur de login un toast apparait
   async loginError() {
     const toast = await this.toastController.create({
       message: 'Adresse email ou mot de passe incorrect.',

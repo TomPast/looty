@@ -8,16 +8,20 @@
 
   <div id="connexion_panel">
 
+      <!-- Formulaire d'inscription -->
     <ion-card>
       <ion-card-content>
+          <!-- Input Adresse mail -->
           <ion-item>
             <ion-label position="floating" color="primary">Adresse mail</ion-label>
             <ion-input type="email" [(ngModel)]="dataUser.email"></ion-input>
           </ion-item>
+          <!-- Input Pseudo -->
           <ion-item>
             <ion-label position="floating" color="primary">Pseudo</ion-label>
             <ion-input [(ngModel)]="dataUser.pseudo"></ion-input>
           </ion-item>
+          <!-- Input Mot de passe -->
           <ion-item>
             <ion-label position="floating" color="primary">Mot de passe</ion-label>
             <ion-input type="password" [(ngModel)]="dataUser.password"></ion-input>
@@ -27,11 +31,13 @@
               <ion-label color="primary" position="floating">Photo de profil :</ion-label>
               <ion-row id="AddPhoto">
                   <ion-col>
+                      <!-- Photo depuis la bibliothèque -->
                       <ion-button (click)="addPhoto('library')" color="tertiary" expand="block" class="imageButton">
                           Bibliothèque
                       </ion-button>
                   </ion-col>
                   <ion-col>
+                      <!-- Photo depuis la caméra -->
                       <ion-button (click)="addPhoto('camera')" color="secondary" expand="block" class="imageButton">
                           Appareil photo
                       </ion-button>
@@ -39,13 +45,14 @@
               </ion-row>
           </ion-item>
 
+          <!-- Preview de l'image uploadée -->
           <div class="flex">
               <div class="img-box">
                   <img [src]="image">
               </div>
           </div>
 
-
+          <!-- Bouton inscription -->
           <ion-button (click)="signUp()" block>S'inscrire</ion-button>
       </ion-card-content>
     </ion-card>

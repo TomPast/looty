@@ -16,12 +16,14 @@ export class ClassementVictoiresPage implements OnInit {
 
   ngOnInit() {
     this.classementVictoire = [];
+    //Récupération des joueurs triés par leur nombre de victoires
     this.afDB.database.ref("users").orderByChild("nb_victoires").once("value", (parentSnapshot, prevChildKey) => {
       parentSnapshot.forEach((childSnapshot)=> {
         console.log(childSnapshot.val().pseudo);
         this.classementVictoire.push(new entry(childSnapshot.val().pseudo, childSnapshot.val().nb_victoires, childSnapshot.val().profile_picture));
       });
     }).then(()=>{
+      //Télécharge les images de profil des joueurs
       this.classementVictoire.forEach((element, index, array) =>{
         this.afSG.storage.ref(array[index].imageURL).getDownloadURL().then(url => {
           array[index].imageURL = url;

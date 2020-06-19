@@ -4,6 +4,8 @@ import * as admin from 'firebase-admin';
 import * as firebase from 'firebase';
 import increment = firebase.database.ServerValue.increment;
 
+// A chaque fois qu'une carte est dévoilée, on distribue les diamants aux joueurs encore en mine, et on stocke le nombre restants.
+// S'il y a deux cartes pièges similaires, c'est la fin de la manche
 exports.onUpdateCartes = functions
     .region('europe-west1')
     .database

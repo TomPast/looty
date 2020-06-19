@@ -22,6 +22,7 @@ export class RecherchePartiePage implements OnInit {
   }
 
   ionViewWillEnter(){
+    //Récupération des info du joueur connecté, si pas connecté on le redirige vers la page de connexion
     this.afAuth.onAuthStateChanged(user => {
       if (user) {
         console.log("UID" + user.uid);
@@ -66,6 +67,9 @@ export class RecherchePartiePage implements OnInit {
     })
   }
 
+  //-----------------------------------------
+  //Récupère la liste des joueurs en attente
+  //-----------------------------------------
   getUsersWaiting(){
     //Récupération des UID des personnes présentes dans la waitingRoom
     this.ref_waiting.on("value", (snapshot, prevChildKey) => {

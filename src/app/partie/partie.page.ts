@@ -39,26 +39,26 @@ export class PartiePage implements OnInit {
         this.currentuser.pseudo = user.displayName;
       }
     }).then(()=>{
-      console.log("UID : "+this.currentuser.uid);
+      //Redirection de l'utilisateur à la fin de la partie
       this.afDB.database.ref("users/").child(this.currentuser.uid).child("partie_en_cours").on("value",(snapshot, prevChildKey)=>{
-        console.log("OKIII");
         if(snapshot.val()== ''){
           this.router.navigateByUrl('/classement');
         }
       });
     });
 
+    //Récupération des informations de jeu
     this.afDB.database.ref('/games/').child(this.GAMEID).on("value", (snapshot, prevChildKey) => { // Récupération de toutes les données de jeu
       this.GAME = snapshot.val();
       this.currentuser_game = this.GAME.players.find(data => data.uid == this.currentuser.uid);
     });
-    this.finPartie();
   }
 
   ngOnInit() {
 
   }
 
+  //Récupération des noms de joueurs et des images de profil
   getPlayersNameAndPicture(){
     this.afDB.database.ref("/games/").child(this.GAMEID).child('players').once("value", (parentSnapshot, prevChildKey) => {
       parentSnapshot.forEach((childSnapshot)=> {
@@ -70,6 +70,7 @@ export class PartiePage implements OnInit {
     });
   }
 
+  //Changement d'état lorsque le joueur appui sur un des deux boutons d'action
   changeEtat(etatParam:string){
     if(etatParam == "mine"){
       this.afDB.database.ref("/games").child(this.GAMEID).transaction(function(game) {
@@ -96,10 +97,6 @@ export class PartiePage implements OnInit {
         });
       });
     })
-  }
-
-  finPartie(){
-
   }
 
 }

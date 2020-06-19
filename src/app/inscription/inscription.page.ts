@@ -51,6 +51,7 @@ export class InscriptionPage implements OnInit {
   ngOnInit() {
   }
 
+  //Fonction d'inscription
   signUp() {
     console.log(this.dataUser.pseudo);
     if((this.imageLoaded) && (this.dataUser.pseudo != '') && (this.dataUser.email != '') && (this.dataUser.password != '')){
@@ -87,6 +88,7 @@ export class InscriptionPage implements OnInit {
     await toast.present();
   }
 
+  //Ecriture des informations de l'user dans la BDD
   writeUserData(userId, email, pseudo, imageUrl) {
     firebase.database().ref('users/' + userId).set({
       pseudo: pseudo,
@@ -100,6 +102,7 @@ export class InscriptionPage implements OnInit {
 
   }
 
+  //Ajouter une photo depuis la caméra et la bibliothèque
   async addPhoto(source: string) {
     if (source === 'library') {
       console.log('library');
@@ -114,6 +117,7 @@ export class InscriptionPage implements OnInit {
     }
   }
 
+  //Ajouter une photo depuis la caméra
   async openCamera() {
     const options: CameraOptions = {
       quality: 100,
@@ -127,6 +131,7 @@ export class InscriptionPage implements OnInit {
     return await this.camera.getPicture(options);
   }
 
+  //Ajouter une photo depuis la bibliothèque
   async openLibrary() {
     const options: CameraOptions = {
       quality: 100,
@@ -140,6 +145,7 @@ export class InscriptionPage implements OnInit {
     return await this.camera.getPicture(options);
   }
 
+  //Upload l'image sur firebase storage
   async uploadFirebase(profileUID: string) {
     const loading = await this.loadingController.create();
     await loading.present();

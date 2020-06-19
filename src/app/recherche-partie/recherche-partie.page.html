@@ -16,7 +16,7 @@
 <ion-content>
 
   <h1>Joueurs en attente : </h1>
-
+  <!-- Affichage des joueurs en attente -->
   <ion-item *ngFor="let user of listUserWaiting">
     <p *ngIf="user == pseudo">{{user}} (vous)</p>
     <p *ngIf="user != pseudo">{{user}} </p>

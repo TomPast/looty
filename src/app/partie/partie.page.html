@@ -15,7 +15,6 @@
     <h5>Manche {{this.GAME.manche}}/5 | {{this.GAME.nb_diamant_attente}} diamants en attente</h5>
     <div class="container">
       <div class="scroll" scrollX="true">
-        <!--<span *ngFor="let item of items | async">{{item.ProjectEvent}}</span>-->
         <img class="carte" id="premiere_carte" src="assets/img/cartes/deck.png">
         <span *ngFor="let carte of this.GAME.cartes, let i = index;">
           <img class="carte"  src="assets/img/cartes/{{carte}}.png" *ngIf="i<=GAME.carte_en_cours"> <!--On dévoile les cartes jusqu'à la carte en cours-->
@@ -24,7 +23,9 @@
     </div>
   </div>
   <ion-row id="premier_ligne">
-    <ion-col *ngFor="let player of this.GAME.players, let i = index;"  >
+
+    <!-- Affichage des cartes des 3 premiers joueurs -->
+    <ion-col *ngFor="let player of this.GAME.players | slice:0:3, let i = index;"  >
       <ion-card class="joueur">
         <div class="entete">
           <ion-avatar>
@@ -49,95 +50,33 @@
       </ion-card>
     </ion-col>
 
-    <ion-col  >
-      <ion-card class="joueur">
-        <div class="entete">
-          <ion-avatar>
-            <img src="">
-          </ion-avatar>
-          <ion-text class="pseudo">totoGaming</ion-text>
-        </div>
-        <div class="body">
-          <div class="coffre">
-            <img class="img" src="assets/img/coffre.png">
-            <ion-text class="nb_coffre">12</ion-text>
-          </div>
-        </div>
-        <div class="footer">
-          <div class="diamant">
-            <img src="assets/img/diamant.png" class="diamant_img">
-            <ion-text class="nb_diamant">23</ion-text>
-          </div>
-          <img src="assets/img/mine.png" class="statut">
-        </div>
-      </ion-card>
-    </ion-col>
 
   </ion-row>
   <ion-row id="deuxieme_ligne">
-    <ion-col size="2">
-
-    </ion-col>
-
-
-    <ion-col size="4">
+    <!-- Affichage des cartes des 3 derniers joueurs -->
+    <ion-col *ngFor="let player of this.GAME.players | slice: 3: 6, let i = index;"  >
       <ion-card class="joueur">
         <div class="entete">
           <ion-avatar>
-            <img src="assets/img/avatar.png">
+            <img src="{{playersDisplay[i].imageURL}}">
           </ion-avatar>
-          <ion-text class="pseudo">TotoGamer</ion-text>
+          <ion-text class="pseudo">{{playersDisplay[i].pseudo}}</ion-text>
         </div>
         <div class="body">
           <div class="coffre">
             <img class="img" src="assets/img/coffre.png">
-            <ion-text class="nb_coffre">12</ion-text>
+            <ion-text class="nb_coffre" *ngIf="player.uid == currentuser.uid">{{player.nb_diamant_total}}</ion-text>
           </div>
         </div>
         <div class="footer">
           <div class="diamant">
             <img src="assets/img/diamant.png" class="diamant_img">
-            <ion-text class="nb_diamant">15</ion-text>
+            <ion-text class="nb_diamant">{{player.nb_diamant_manche}}</ion-text>
           </div>
-          <img src="assets/img/mine.png" class="statut">
+          <img src="assets/img/mine.png" class="statut" *ngIf="player.etat == 'mine'">
+          <img src="assets/img/camp.png" class="statut" *ngIf="player.etat == 'camp'">
         </div>
       </ion-card>
-    </ion-col>
-
-
-    <ion-col size="4">
-    <ion-card class="joueur">
-      <div class="entete">
-        <ion-avatar>
-          <img src="assets/img/avatar.png">
-        </ion-avatar>
-        <ion-text class="pseudo">TotoGamer</ion-text>
-      </div>
-      <div class="body">
-        <div class="coffre">
-          <img class="img" src="assets/img/coffre.png">
-          <ion-text class="nb_coffre">12</ion-text>
-        </div>
-      </div>
-      <div class="footer">
-        <div class="diamant">
-          <img src="assets/img/diamant.png" class="diamant_img">
-          <ion-text class="nb_diamant">15</ion-text>
-        </div>
-        <img src="assets/img/mine.png" class="statut">
-      </div>
-    </ion-card>
-
-    </ion-col>
-    <ion-col size="2">
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="test">
-      <ion-button  block (click)="changeEtat('mine')" *ngIf="currentuser_game.status != 'attente'">EXPLORER</ion-button>
-    </ion-col>
-    <ion-col class="test">
-      <ion-button  block (click)="changeEtat('rentre')" *ngIf="currentuser_game.status != 'attente'">RENTRER</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>

@@ -13,9 +13,9 @@
 </ion-header>
 <ion-content>
   <ion-list>
-      <h1>Victoires</h1>
+    <h1>Victoires</h1>
 
-
+    <!-- Classement des joueurs en fonction du nombre de victoires -->
     <ion-item *ngFor="let entry of this.classementVictoire">
       <ion-avatar slot="start">
         <img src="{{entry.imageURL}}">

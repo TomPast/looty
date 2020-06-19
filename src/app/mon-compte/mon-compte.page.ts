@@ -33,8 +33,7 @@ export class MonComptePage implements OnInit {
     this.menu.enable(true);
     this.afAuth.onAuthStateChanged(user => {
       if (user) {
-        //Récupération de l'image de profil
-
+        //Récupération de l'image de profil, email, pseudo et uid
         console.log("UID" + user.uid);
         console.log("email " + user.email);
         console.log("pseudo " + user.displayName);
@@ -42,6 +41,8 @@ export class MonComptePage implements OnInit {
 
         this.dataUser.email = user.email;
         this.dataUser.pseudo = user.displayName;
+
+        //Récupération et calcul des statistiques de jeu
         this.afDB.database.ref("users").child(user.uid).once("value", (snapshot, prevChildKey) => {
           this.dataUser.nb_parties = snapshot.val().nb_parties;
           this.dataUser.nb_defaites = snapshot.val().nb_defaites;
@@ -63,6 +64,7 @@ export class MonComptePage implements OnInit {
       }
     });
   }
+
   ionViewCanEnter(): boolean {
     if(this.loaded == true) {
       return true;
