@@ -6,7 +6,7 @@ Looty est un jeu développé par Tom Pastor dans le cadre du module Développeme
 
 ## Vidéo de démonstration du jeu
 <p align="center">
-[![Demonstration du jeu](.images/video.png)](https://youtu.be/l8TaToay_IM)
+[![Demonstration du jeu](./images/video.png)](https://youtu.be/l8TaToay_IM)
 </p>
 
 ## Synthèse finale (19/06/2020) 
