@@ -40,8 +40,8 @@
           <ion-text name="nb_victoires" *ngIf="dataUser.nb_victoires > 1">{{dataUser.nb_victoires}} parties remportées</ion-text>
           <ion-text name="nb_victoires" *ngIf="dataUser.nb_victoires <= 1">{{dataUser.nb_victoires}} partie remportée</ion-text>
           <h2>Pourcentage de victoire:</h2>
-          <ion-text> {{dataUser.poucentage_victoire *100}}% de victoire</ion-text>
-          <ion-progress-bar value="{{dataUser.poucentage_victoire}}"></ion-progress-bar>
+          <ion-text> {{dataUser.pourcentage_victoire *100}}% de victoire</ion-text>
+          <ion-progress-bar value="{{dataUser.pourcentage_victoire}}"></ion-progress-bar>
         </div>
         <ion-button block [routerLink]="['/classement']">Classement</ion-button>
       </ion-card-content>
