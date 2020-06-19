@@ -4,8 +4,10 @@
 </p>
 Looty est un jeu développé par Tom Pastor dans le cadre du module Développement d'applications mobiles. Celui-ci reprend le principe du jeu [diamant](https://fr.wikipedia.org/wiki/Diamant_(jeu)) et repose sur Firebase (Authentification, Storage, Realtime DB, et Cloud Functions)
 
-[![Demonstration du jeu](https://img.youtube.com/vi/l8TaToay_IM/0.jpg)](https://youtu.be/l8TaToay_IM)
-
+## Vidéo de démonstration du jeu
+<p align="center">
+[![Demonstration du jeu](.images/video.png)](https://youtu.be/l8TaToay_IM)
+</p>
 
 ## Synthèse finale (19/06/2020) 
 ### Synthèse Globale
