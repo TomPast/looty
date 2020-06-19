@@ -17,7 +17,7 @@
               </ion-col>
             </ion-row>
           </ion-grid>
-          <ion-title>TotoGamer</ion-title>
+          <ion-title>{{pseudo}}</ion-title>
         </div>
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
           <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">

@@ -65,10 +65,12 @@ export class AppComponent implements OnInit {
   }
 
   img : string;
+  pseudo : string;
 
   ngOnInit() {
     this.afAuth.onAuthStateChanged(user => {
       if (user) {
+        this.pseudo = user.displayName;
         var storage = this.afSG.storage;
         var pathReference = storage.ref(user.photoURL);
         pathReference.getDownloadURL().then(url => {
