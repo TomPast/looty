@@ -12,9 +12,9 @@ Looty est un jeu développé par Tom Pastor dans le cadre du module Développeme
 ## Synthèse finale (19/06/2020) 
 ### Synthèse Globale
 Durant ce projet, j'ai essayé de noter à chaque fois que je travaillais sur le projet lors de la phase de développement. Cela m'a permis de noter au fur et à mesure les problèmes que j'ai pu rencontrer.
-J'ai dû passer environ 70h sur ce projet à partir de la phase de développement. J'ai beaucoup appris car c'était la première fois que je créais une application aussi complète sous Ionic.
+J'ai dû passer environ 70-80h sur ce projet à partir de la phase de développement. J'ai beaucoup appris car c'était la première fois que je créais une application aussi complète sous Ionic.
 J'ai aussi pu découvrir Firebase (Base de données en temps réel, Storage, Authentification, Cloud Functions) qui me parait très puissant.
-J'ai pu réalisé une interface en me basant sur les outils de matérial design (https://material.io/resources/color/#!/?view.left=0&view.right=1&primary.color=f233b6&secondary.color=a262f9) avec le choix des couleurs et des éléments (voir lien)
+J'ai pu réaliser une interface en me basant sur les outils de matérial design (https://material.io/resources/color/#!/?view.left=0&view.right=1&primary.color=0b222c&secondary.color=f9aa32) avec le choix des couleurs et des éléments (voir lien) et en créant mes propres cartes à jouer, logo et splashcreens
 
 ### Difficultés rencontrées 
 * La prise en main de Firebase, le temps de comprendre les différents modules et comment les utiliser m'a pris beaucoup de temps. J'ai notamment eu et j'ai toujours du mal avec Firebase Realtime Database car il s'agit d'un arbre JSON et non d'une BDD SQL comme j'en avais l'habitude. J'ai tendance à toujours penser en SQL, donc des choses très simple en SQL sont parfois complexes avec la BDD firebase.
@@ -89,7 +89,7 @@ Beaucoup de difficultés + beaucoup de réflexion (comment agencer les modules e
 
 Difficultés : Récupération de la photo de profil à partir de l'URL de l'image stockée sur Firebase Storage
 
-### 16/04/2020 : Création des assets graphiques (2h00)
+### 16/04/2020 : Création des assets graphiques (3h00)
 - Retravailler le logo
 - Créer le design des cartes de diamant, piège et trésor.
 
