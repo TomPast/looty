@@ -2,15 +2,27 @@
 <p align="center">
    <img src="./images/icon.png" alt="" data-canonical-src="./images/icon.png" width="200" />
 </p>
-Looty est un jeu développé par Tom Pastor dans le cadre du module Développement d'applications mobiles. Celui-ci reprend le principe du jeu [diamant](https://fr.wikipedia.org/wiki/Diamant_(jeu)) et repose sur Firebase (Authentification, Storage, Realtime DB, et Cloud Functions)
+Looty est un jeu mobile développé par Tom Pastor. Celui-ci reprend le principe du jeu diamant(https://fr.wikipedia.org/wiki/Diamant_(jeu)) et repose sur Firebase (Authentification, Storage, Realtime DB, et Cloud Functions)
 
-## Vidéo de démonstration du jeu
+## Stack
+**Design** de l'application réalisé sous Figma. 
+
+**Design** des assets (cartes) sous Adobe Illustrator.
+
+**Backend** : Firebase
+
+**Frontend**: Ionic Framework, Angular
+
+
+## Démo
 <p align="center">
    <a href="https://youtu.be/l8TaToay_IM"><img src="./images/video.png" alt="" data-canonical-src="./images/video.png" /></a>
 </p>
 
 ## Synthèse finale (19/06/2020) 
 ### Synthèse Globale
+Ce projet a été réalisé pour un cours de Développement d'application mobile durant mes études. Il nous avait été demandé de noter chaque activité consacrée au projet ainsi que notre ressenti, c'est ce que vous retrouverez dans la suite de ce README.
+
 Durant ce projet, j'ai essayé de noter à chaque fois que je travaillais sur le projet lors de la phase de développement. Cela m'a permis de noter au fur et à mesure les problèmes que j'ai pu rencontrer.
 J'ai dû passer environ 70-80h sur ce projet à partir de la phase de développement. J'ai beaucoup appris car c'était la première fois que je créais une application aussi complète sous Ionic.
 J'ai aussi pu découvrir Firebase (Base de données en temps réel, Storage, Authentification, Cloud Functions) qui me parait très puissant.
